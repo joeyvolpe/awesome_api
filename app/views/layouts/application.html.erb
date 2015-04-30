@@ -7,8 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-<!-- I like turtles. -->
+<div class="container-fluid">
+	<%= render 'layouts/navbar'  %>
+		<div>
+			<%= yield %>
+		</div>
+	<%= render 'layouts/footer'  %>
+</div>
 </body>
 </html>
