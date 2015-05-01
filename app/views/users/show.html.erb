@@ -2,5 +2,41 @@
 	<h1>Welcome <%= @user.name %>!</h1>
 	
 
+	<section>
+		<% @user.items.each do |item| %>
+			<div class="well well-sm">
+			  by <%= User.find(item.user_id).name %>
+			  <br>created on 
+			  <%= item.created_at.to_formatted_s(:long_ordinal) %>
+			  <br>
+			  <br>
+			  <strong>Name:</strong> 
+			  <%= item.item_name %>
+			  <br>
+			  <strong>Description:</strong> 
+			  <em><%= item.item_description %></em>
+			  <br>
+			</div>
+		<% end %>
+	</section>
+
+	<!-- section for the form for items -->
+	<section>
+		<%= form_for [@user, @item] do |f| %>
+			<div class="well well-xs">
+			  <strong><%= f.label :item_name %>:</strong>
+			  <%= f.text_field :item_name %>
+			  <br>
+			  <strong><%= f.label :item_description %>:</strong>
+			  <%= f.text_area :item_description %>
+			  <br>
+			</div>
+			<div class="well well-sm">
+			  <%= f.submit "Add new item!" %>
+			</div>
+		<% end %>
+	</section>
+	
+
   
 </div>

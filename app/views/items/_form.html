@@ -1,0 +1,13 @@
+<%= form_for @item do |f| %>
+    <div class="well well-xs">
+      <strong><%= f.label :item_name %>:</strong>
+      <%= f.text_field :item_name %>
+      <br>
+      <strong><%= f.label :item_description %>:</strong>
+      <%= f.text_area :item_description %>
+      <br>
+    </div>
+    <div class="well well-sm">
+      <%= f.submit "Add new item!" %>
+    </div>
+<% end %>
