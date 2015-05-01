@@ -15,7 +15,6 @@ resources :users
 
 
  post "users/:id/items" => "items#create", as: :user_items
-
  resources :items
  # get 'items' => 'items#index'
  # get 'items/new' => 'items#new', as: :new_item
