@@ -1,13 +1,12 @@
 <br>
-<div<div class="container-fluid">
+<div class="container-fluid">
   <div class="well well-xs">
-    <h2 id="logo"><%= @item.name %></h2>
+    <h2 id="logo"><%= @item.item_name %></h2>
     <%= link_to "item timeline", items_path %>
   </div>
   <br>
   <div class="well well-sm">
     by 
-    <%= link_to @item.user.name, user_path(@item.user) %> 
     <br>created on 
     <%= @item.created_at.to_formatted_s(:long_ordinal) %>
     <br>
