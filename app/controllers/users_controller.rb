@@ -27,10 +27,15 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user = User.update_attributes(user_params)
+		if @user.update_attributes(user_params)
+			redirect_to users_path
+		else
+			render :edit
+		end
   end
 
   def destroy
+  	@user = User.find(params[:id])
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully deleted.' }

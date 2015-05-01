@@ -5,8 +5,8 @@
 				<div>
 					<li><%= user.name %>
 					<%= link_to 'Show', user, :class => "btn btn-primary" %>
-					<%= link_to 'Delete', user %> 
-					 <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+					<%= link_to 'Edit', edit_user_path(user), :class => "btn btn-primary" %>					
+					 <%= link_to 'Delete', user, :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></li>
 				</div>
 			<% end %>
 		</ul>
