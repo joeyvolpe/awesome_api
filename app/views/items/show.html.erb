@@ -1,0 +1,22 @@
+<br>
+<div<div class="container-fluid">
+  <div class="well well-xs">
+    <h2 id="logo"><%= @item.name %></h2>
+    <%= link_to "item timeline", items_path %>
+  </div>
+  <br>
+  <div class="well well-sm">
+    by 
+    <%= link_to @item.user.name, user_path(@item.user) %> 
+    <br>created on 
+    <%= @item.created_at.to_formatted_s(:long_ordinal) %>
+    <br>
+    <br>
+    <strong>Name:</strong> 
+    <%= @item.item_name %>
+    <br>
+    <strong>Description:</strong> 
+    <em><%= @item.item_description %></em>
+    <br>
+  </div>
+</div>
