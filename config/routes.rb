@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 
 
-resources :users
+ resources :users
  get 'contact' => 'static_pages#contact'
 
  # get 'users' => 'users#index', as: :users
