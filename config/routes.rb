@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
  root 'users#index'
+ get 'signup/' => 'users#new', as: :new_user
+
+ get 'login' => 'sessions#new'
+ post 'login' => 'sessions#create'
+ delete 'logout' => 'sessions#destroy'
 
 
-
-resources :users
+ resources :users, except: [:new]
  get 'contact' => 'static_pages#contact'
 
  # get 'users' => 'users#index', as: :users
