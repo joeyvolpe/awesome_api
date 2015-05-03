@@ -1,7 +1,8 @@
 <div class="container">
 	<h1>Welcome <%= @user.name %>!</h1>
-	
-
+	<div>
+		<p id="alert alert-danger"><%= notice %></p>
+	</div>
 	<section>
 		<% @user.items.each do |item| %>
 			<div class="well well-sm">
@@ -16,6 +17,9 @@
 			  <strong>Description:</strong> 
 			  <em><%= item.item_description %></em>
 			  <br>
+			  <% if view_button(item) %>
+			  	<%= link_to 'Request Trade', :start_transaction, :class => "btn btn-primary" %>
+			  <% end %>
 			</div>
 		<% end %>
 	</section>

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
  # delete 'users/:id' => 'users#destroy'
 
 
-
+ get "users/:id/items/:id/transactions" => 'items#transactions', as: :start_transaction
  post "users/:id/items" => "items#create", as: :user_items
  resources :items
  # get 'items' => 'items#index'

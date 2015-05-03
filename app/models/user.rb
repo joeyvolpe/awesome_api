@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :items
+  has_many :items, :dependent => :destroy
   attr_reader :password
 
   def password=(unencrypted_password)
