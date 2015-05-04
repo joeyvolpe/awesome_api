@@ -13,6 +13,8 @@
 		<div>
 			<% if flash[:error] %>
 				<h4 class="bg-danger flash"><%= flash[:error]  %></h4>
+			<% elsif flash[:welcome] %>
+				<h4 class="bg-success flash"><%= flash[:welcome] %></h4>	
 			<% end %>
 		</div>
 			<%= yield %>
