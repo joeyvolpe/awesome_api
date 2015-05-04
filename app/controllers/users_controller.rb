@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+  before_action :require_login, except: [:index, :new, :create]
+  before_action :authorized?, only: [:edit, :update]
   def index
     @users = User.all
   end
@@ -48,5 +49,18 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :password)
+  end
+
+  def require_login?
+    unless logged_in?
+      flash[:error] = "You must be logged in to access that page."
+    end
+  end
+
+  def authorized?
+    unless current_user == User.find(params[:id])
+      flash[:error] = "You are not authorized to access that page."
+      redirect_to users_path
+    end
   end
 end

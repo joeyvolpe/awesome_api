@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :items
   attr_reader :password
+  before_save :format_user_input
 
   def password=(unencrypted_password)
   	unless unencrypted_password.empty?
@@ -17,4 +18,9 @@ class User < ActiveRecord::Base
   end
  end
 
+ private
+ def format_user_input
+  self.name = self.name.titleize
+  self.email = self.email.downcase
+ end
 end
