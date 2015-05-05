@@ -1,0 +1,4 @@
+    <% @trades.reverse.each do |trade| %>
+    	<%= trade.requester.name %>
+    	<%= trade.offered_item.name %>
+    <% end %>

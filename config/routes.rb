@@ -15,11 +15,12 @@ Rails.application.routes.draw do
  # post 'users' => 'users#create'
  # get 'users/:id' => 'users#show'
  # delete 'users/:id' => 'users#destroy'
-
-
- get "users/:id/items/:id/transactions" => 'items#transactions', as: :start_transaction
+ get 'trades' => 'trades#index'
+ get 'users/:id/trades' => 'trades#my_trades', as: :my_trades
+ post "users/:id/items/:id/trades/start_trade" => 'trades#start_trade', as: :start_trade
  post "users/:id/items" => "items#create", as: :user_items
  resources :items
+ resources :trades
  # get 'items' => 'items#index'
  # get 'items/new' => 'items#new', as: :new_item
  # post 'items' => 'items#create', as: :item

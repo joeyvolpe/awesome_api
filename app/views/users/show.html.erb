@@ -18,7 +18,14 @@
 			  <em><%= item.item_description %></em>
 			  <br>
 			  <% if view_button(item) %>
-			  	<%= link_to 'Request Trade', :start_transaction, :class => "btn btn-primary" %>
+			  	<%= form_for [@user, @trade], url: "#{@user.id}/items/#{item.id}/trades/start_trade" do |f| %>
+			  	    <div class="well well-sm">
+						<%= f.select :item_a_id, current_user.items.all.collect {|p| [ p.item_name, p.id ] }, {prompt: 'Select Item'} %>
+			  			<%= f.hidden_field :user_a_id, :value => current_user.id %>
+			  			<%= f.hidden_field :user_b_id, :value => @user.id %>
+			  			<%= f.submit "Request Trade!" %>
+			  		</div>
+			  	<% end %>
 			  <% end %>
 			</div>
 		<% end %>
@@ -34,10 +41,11 @@
 			  <strong><%= f.label :item_description %>:</strong>
 			  <%= f.text_area :item_description %>
 			  <br>
-			</div>
-			<div class="well well-sm">
+			  <div class="well well-sm">
 			  <%= f.submit "Add new item!" %>
 			</div>
+			</div>
+			
 		<% end %>
 	</section>
 	

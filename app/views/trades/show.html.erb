@@ -1,0 +1,10 @@
+<% current_user.trades.each do |trade| %>
+
+Name of Person
+	<%= User.find(trade.user_a_id).name %>
+
+Wants To Trade
+
+For Your 
+
+<% end %>
