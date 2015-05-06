@@ -1,5 +1,12 @@
 <div>
 	<div>
+	<div>
+			<%= form_tag users_path, method: 'get', :class=>"form-inline" do  %>
+				<%= text_field_tag :q, nil  %>
+				<%= submit_tag "Search", :class=>"btn btn-submit"  %>
+			<% end %>
+	</div>
+	<br>
 		<ul>
 			<% @users.each do |user| %>
 				<div>
@@ -10,5 +17,24 @@
 				</div>
 			<% end %>
 		</ul>
+		<br>
+		<div>
+			<%= form_tag users_path, method: 'get', :class=>"form-inline" do  %>
+				<%= text_field_tag :q, nil  %>
+				<%= submit_tag "Search", :class=>"btn btn-submit"  %>
+			<% end %>
+		</div>
 	</div>
 </div>
+
+
+
+			<%#= form_tag(users_path, method: 'get', :class => "form-inline") do %>
+				<!-- <div class="form-group"> -->
+					<%#= label_tag(:q, "Search users:", :class => "normal")  %>
+					<!-- This search field is a bit buggy, if you click in the search field it will clear using jQuery, however if you click search without clicking in the box, it will search for a user with parameter "Search Users..." -->
+ 					<%#= text_field_tag :q, "Search Users...", :onclick => 'if($(this).val()=="Search Users..."){$(this).val("");};'%>
+ 					<!-- End buggy search users input -->
+ 					<%#= submit_tag("Search", :class => "btn btn-submit") %>
+ 				<!-- </div> -->
+			<%# end %>

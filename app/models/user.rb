@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   has_many :items
   attr_reader :password
-
+  before_save :format_user_input
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+validates :password, presence: true, confirmation: true, length: { in: 6..20 }
   def password=(unencrypted_password)
   	unless unencrypted_password.empty?
   		@password = unencrypted_password
@@ -17,4 +20,9 @@ class User < ActiveRecord::Base
   end
  end
 
+ private
+ def format_user_input
+  self.name = self.name.titleize
+  self.email = self.email.downcase
+ end
 end

@@ -1,28 +1,26 @@
-== README
+Update:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Github Workflow
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+In your terminal:
+
+$ git add -A
+$ git commit -m "detailed message of parts of code worked"
+$ git branch // you should always be working on a branch OTHER than development and master
+$ git push origin <branch_name>
+
+---------------------------------------------
+
+Now to github.com:
+
+In the awesome-api repository, you will be able to create a pull request. The base you are merging to should be set to DEV. Once that is complete, send a message on slack so team members can immediately get on and merge the pull request after commenting. As well, as pull down the most recent working code.
+
+To pull down working code:
+
+$ git checkout development
+$ git pull origin DEV
+$ git checkout <branch_name>
+$ git merge development
+
+This will provide you with the most recent working code.
