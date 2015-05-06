@@ -11,6 +11,8 @@
 			  <%= item.created_at.to_formatted_s(:long_ordinal) %>
 			  <br>
 			  <br>
+			  <%= image_tag item.item_image.url(:thumb) %>
+			  <br>
 			  <strong>Name:</strong> 
 			  <%= item.item_name %>
 			  <br>
@@ -41,7 +43,12 @@
 			  <strong><%= f.label :item_description %>:</strong>
 			  <%= f.text_area :item_description %>
 			  <br>
-			  <div class="well well-sm">
+
+
+			  <%= f.file_field :item_image, class: 'btn btn-submit' %>
+			  <br>
+			</div>
+			<div class="well well-sm">
 			  <%= f.submit "Add new item!" %>
 			</div>
 			</div>

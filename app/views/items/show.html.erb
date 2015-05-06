@@ -11,6 +11,7 @@
     <%= @item.created_at.to_formatted_s(:long_ordinal) %>
     <br>
     <br>
+    <%=image_tag @item.item_image.url(:thumb)  %>
     <strong>Name:</strong> 
     <%= @item.item_name %>
     <br>
