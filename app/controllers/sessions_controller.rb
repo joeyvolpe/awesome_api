@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 			# session[:user_id] = "joey"
 			# {:user_id => "joey"}
 		else
-		flash.now[:error] = "Your email address or password are incorrect."
+		flash.now[:error] = "Your email address or password are incorrect." 
 			redirect_to login_path
 		end
 	end

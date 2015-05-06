@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   before_action :require_login?, except: [:index, :new, :create]
   before_action :authorized?, only: [:edit, :update]
   def index
-    @users = User.all
+    if params[:q]
+      @users = User.where( 'name like ?', '%' + params[:q] + '%' )
+    else
+      @users = User.all
+    end
   end
 
   def show
