@@ -22,7 +22,7 @@
 			  	    <div class="well well-sm">
 						<%= f.select :item_a_id, current_user.items.all.collect {|p| [ p.item_name, p.id ] }, {prompt: 'Select Item'} %>
 			  			<%= f.hidden_field :user_a_id, :value => current_user.id %>
-			  			<%= f.hidden_field :user_b_id, :value => @user.id %>
+			  			<%= f.hidden_field :user_id, :value => @user.id %>
 			  			<%= f.submit "Request Trade!" %>
 			  		</div>
 			  	<% end %>
