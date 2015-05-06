@@ -1,0 +1,21 @@
+    <% @trades.each do |trade| %>
+    <div class="well well-sm">
+    	<p>Trade Requested By: <%= trade.requester.name %></p>
+    	<p>Item offered: <%= trade.offered_item.item_name %></p>
+    	<p>Item description: <%= trade.offered_item.item_description %> </p>
+    	<p>Item Requested: <%= trade.requested_item.item_name %></p>
+    	<p>Item status: <%= trade.status %></p>
+    	
+    	<div>
+	    	<div>
+	    	<%= button_to "Accept Trade!", accept_trade_path(trade), method: :post, :class => "btn btn-primary" %>
+	    	</div>
+	    	<br>
+	    	<div>
+	    	<%= button_to "Reject Trade!", reject_trade_path(trade), method: :post, :class => "btn btn-danger"  %>
+	    	</div>
+	    </div>
+    </div>
+
+
+    <% end %>
