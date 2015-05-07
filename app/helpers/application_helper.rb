@@ -11,13 +11,20 @@ module ApplicationHelper
     end
   end
 
-  def pending_trades?
-    if (logged_in? && current_user.trade_pending > 0)
+  def pending_trades
+    if logged_in? 
+      return current_user.trades.where(status: 'active').count
+    end
+  end
+
+  def user_access?
+    if logged_in? && current_user.id == @user.id
       return true
     else
       false
     end
   end
 
-  # raise pending_trades?.inspect
+
+  
 end

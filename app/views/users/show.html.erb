@@ -1,5 +1,9 @@
 <div class="container">
+<% if user_access? %>
 	<h1>Welcome <%= @user.name %>!</h1>
+<% else %>
+	<h1>Trade with <%= @user.name %>!</h1>
+<% end %>
 	<div>
 		<p id="alert alert-danger"><%= notice %></p>
 	</div>
@@ -34,27 +38,29 @@
 	</section>
 
 	<!-- section for the form for items -->
-	<section>
-		<%= form_for [@user, @item] do |f| %>
-			<div class="well well-xs">
-			  <strong><%= f.label :item_name %>:</strong>
-			  <%= f.text_field :item_name %>
-			  <br>
-			  <strong><%= f.label :item_description %>:</strong>
-			  <%= f.text_area :item_description %>
-			  <br>
+	<% if user_access? %>
+		<section>
+			<%= form_for [@user, @item] do |f| %>
+				<div class="well well-xs">
+				  <strong><%= f.label :item_name %>:</strong>
+				  <%= f.text_field :item_name %>
+				  <br>
+				  <strong><%= f.label :item_description %>:</strong>
+				  <%= f.text_area :item_description %>
+				  <br>
 
 
-			  <%= f.file_field :item_image, class: 'btn btn-submit' %>
-			  <br>
-			</div>
-			<div class="well well-sm">
-			  <%= f.submit "Add new item!" %>
-			</div>
-			</div>
-			
-		<% end %>
-	</section>
+				  <%= f.file_field :item_image, class: 'btn btn-submit' %>
+				  <br>
+				</div>
+				<div class="well well-sm">
+				  <%= f.submit "Add new item!" %>
+				</div>
+				</div>
+				
+			<% end %>
+		</section>
+	<% end %>
 	
 
   

@@ -16,8 +16,6 @@ class TradesController < ApplicationController
     @item = Item.find(params[:id])
     @trade = @item.trades.new(trade_params)
     if @trade.save
-      @user.trade_pending += 1
-      # increment(@user.trade_pending, by = 1) public
       @user.save
       redirect_to user_path(@user), notice: 'Trade was succesfully requested.'
     else
@@ -39,7 +37,7 @@ class TradesController < ApplicationController
     @trade.save
     @offered_item.save
     @requested_item.save
-    redirect_to user_path(current_user), notice: 'Trade was succesfully completed.'
+    redirect_to user_path(current_user), notice: "Trade was succesfully completed. A #{@offered_item.item_name} is now in your inventory."
   end
 
   def reject_trade
@@ -47,7 +45,6 @@ class TradesController < ApplicationController
     @trade.status = 'rejected'
     @trade.save
     redirect_to user_path(current_user), notice: 'Trade was rejected.'
-
   end
 
   private

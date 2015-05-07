@@ -2,9 +2,7 @@
 	<ul class="nav nav-pills">
 		<li><%= link_to 'Home', root_path  %></li>
 		<% if logged_in? %>
-			<% if pending_trades? %>
-				<li><%= link_to "Trades", my_trades_path(current_user) %></li>
-			<% end %>
+			<li><%= link_to "Trades", my_trades_path(current_user) %></li>
 			<li><%= link_to "#{current_user.name}", current_user %></li>
 			<li><%= link_to 'Logout', logout_path, method: :delete  %></li> 
 		<% else %>
@@ -14,11 +12,11 @@
 		<li><%= link_to 'Users', users_path %></li>
 		<li><%= link_to 'Items', items_path %></li>
 		
-	<% if pending_trades? %>	
+	<% if logged_in? && pending_trades > 0 %>	
 		<ul>
 		    <li class="notification-container">
 		        <i class="icon-globe"></i>
-		        <span class="notification-counter"><%= "#{current_user.trade_pending}" %></span>
+		        <span class="notification-counter"><%= pending_trades %></span>
 		    </li>
 		</ul>
 	<% end %>
