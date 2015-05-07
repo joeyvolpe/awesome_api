@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150501001125) do
+ActiveRecord::Schema.define(version: 20150506231425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(version: 20150501001125) do
 
   add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
 
+  create_table "trades", force: :cascade do |t|
+    t.integer  "user_a_id"
+    t.integer  "item_a_id"
+    t.integer  "user_id"
+    t.integer  "item_b_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "item_id"
+    t.string   "status",     default: "active"
+  end
+
+  add_index "trades", ["item_id"], name: "index_trades_on_item_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -35,7 +48,9 @@ ActiveRecord::Schema.define(version: 20150501001125) do
     t.string   "wishlist"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "trade_pending"
   end
 
   add_foreign_key "items", "users"
+  add_foreign_key "trades", "items"
 end

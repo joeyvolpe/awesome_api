@@ -1,0 +1,3 @@
+<% @trades.reverse.each do |trade| %>
+	<%= User.find(trade.user_a_id).name %>
+<% end %>

@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @item = Item.new
+    @trade = Trade.new
   end
 
   def new
@@ -15,11 +16,15 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.save
-      redirect_to user_path(@user)
+      session[:user_id] = @user.id.to_s
+      flash[:welcome] = "Thanks for signing up #{@user.name}!"
+      redirect_to users_path
     else
       render :new
     end
+
   end
 
   def edit
@@ -37,6 +42,7 @@ class UsersController < ApplicationController
 
   def destroy
   	@user = User.find(params[:id])
+    session[:user_id] = nil
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully deleted.' }
@@ -47,6 +53,8 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :image)
+
+    params.require(:user).permit(:name, :email, :password, :image, :trade_pending)
+
   end
 end
