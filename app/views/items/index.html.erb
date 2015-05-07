@@ -12,6 +12,8 @@
       <br> 
       <%= item.created_at.strftime("created at %I:%M%p on %m/%d/%Y")%> 
       <br>
+      <%= link_to 'Show', item, :class => "btn btn-primary" %>
+      <%= link_to 'Edit', edit_item_path(item), :class => "btn btn-primary" %>
       <br>
     <% end %>
   </div> 

@@ -1,28 +1,37 @@
 <div class="container">
 <% if user_access? %>
 	<h1>Welcome <%= @user.name %>!</h1>
+
 <% else %>
 	<h1>Trade with <%= @user.name %>!</h1>
 <% end %>
+
+	<%= image_tag @user.image.url %>
+
+
 	<div>
 		<p id="alert alert-danger"><%= notice %></p>
 	</div>
 	<section>
 		<% @user.items.each do |item| %>
 			<div class="well well-sm">
-			  by <%= User.find(item.user_id).name %>
-			  <br>created on 
-			  <%= item.created_at.to_formatted_s(:long_ordinal) %>
+			  <%= image_tag @user.image.url(:thumb) %>
+			  <%= User.find(item.user_id).name %>
+			  <br>
 			  <br>
 			  <br>
 			  <%= image_tag item.item_image.url(:thumb) %>
 			  <br>
-			  <strong>Name:</strong> 
+			  <br>
+			  <strong>Item:</strong> 
 			  <%= item.item_name %>
 			  <br>
-			  <strong>Description:</strong> 
 			  <em><%= item.item_description %></em>
 			  <br>
+
+			  <br>
+			  <%= item.created_at.to_formatted_s(:long_ordinal) %>
+
 			  <% if view_button(item) %>
 			  	<%= form_for [@user, @trade], url: "#{@user.id}/items/#{item.id}/trades/start_trade" do |f| %>
 			  	    <div class="well well-sm">

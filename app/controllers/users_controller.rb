@@ -53,6 +53,8 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :trade_pending)
+
+    params.require(:user).permit(:name, :email, :password, :image, :trade_pending)
+
   end
 end
