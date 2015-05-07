@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506231425) do
+ActiveRecord::Schema.define(version: 20150507132825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20150506231425) do
     t.integer  "user_a_id"
     t.integer  "item_a_id"
     t.integer  "user_id"
-    t.integer  "item_b_id"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "item_id"
@@ -48,7 +47,6 @@ ActiveRecord::Schema.define(version: 20150506231425) do
     t.string   "wishlist"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.integer  "trade_pending"
   end
 
   add_foreign_key "items", "users"

@@ -1,13 +1,17 @@
 <div class="container">
+<% if user_access? %>
 	<h1>Welcome <%= @user.name %>!</h1>
-<<<<<<< HEAD
+
+<% else %>
+	<h1>Trade with <%= @user.name %>!</h1>
+<% end %>
+
 	<%= image_tag @user.image.url %>
 
-=======
+
 	<div>
 		<p id="alert alert-danger"><%= notice %></p>
 	</div>
->>>>>>> ed9cfd1065745a09818f20205f43f3d4cddf72db
 	<section>
 		<% @user.items.each do |item| %>
 			<div class="well well-sm">
@@ -24,10 +28,10 @@
 			  <br>
 			  <em><%= item.item_description %></em>
 			  <br>
-<<<<<<< HEAD
+
 			  <br>
 			  <%= item.created_at.to_formatted_s(:long_ordinal) %>
-=======
+
 			  <% if view_button(item) %>
 			  	<%= form_for [@user, @trade], url: "#{@user.id}/items/#{item.id}/trades/start_trade" do |f| %>
 			  	    <div class="well well-sm">
@@ -38,33 +42,34 @@
 			  		</div>
 			  	<% end %>
 			  <% end %>
->>>>>>> ed9cfd1065745a09818f20205f43f3d4cddf72db
 			</div>
 		<% end %>
 	</section>
 
 	<!-- section for the form for items -->
-	<section>
-		<%= form_for [@user, @item] do |f| %>
-			<div class="well well-xs">
-			  <strong><%= f.label :item_name %>:</strong>
-			  <%= f.text_field :item_name %>
-			  <br>
-			  <strong><%= f.label :item_description %>:</strong>
-			  <%= f.text_area :item_description %>
-			  <br>
+	<% if user_access? %>
+		<section>
+			<%= form_for [@user, @item] do |f| %>
+				<div class="well well-xs">
+				  <strong><%= f.label :item_name %>:</strong>
+				  <%= f.text_field :item_name %>
+				  <br>
+				  <strong><%= f.label :item_description %>:</strong>
+				  <%= f.text_area :item_description %>
+				  <br>
 
 
-			  <%= f.file_field :item_image, class: 'btn btn-submit' %>
-			  <br>
-			</div>
-			<div class="well well-sm">
-			  <%= f.submit "Add new item!" %>
-			</div>
-			</div>
-			
-		<% end %>
-	</section>
+				  <%= f.file_field :item_image, class: 'btn btn-submit' %>
+				  <br>
+				</div>
+				<div class="well well-sm">
+				  <%= f.submit "Add new item!" %>
+				</div>
+				</div>
+				
+			<% end %>
+		</section>
+	<% end %>
 	
 
   
