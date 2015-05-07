@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   	unless unencrypted_password.empty?
   		@password = unencrypted_password
   		self.password_digest = BCrypt::Password.create(unencrypted_password)
- 	 end
+ 	  end
   end	
 
   def authenticate(unencrypted_password)
@@ -14,7 +14,9 @@ class User < ActiveRecord::Base
   		return self
   	else 
   		return false
+    end
   end
- end
+
+  mount_uploader :image, ProfilePicUploader
 
 end
