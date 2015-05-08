@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :items
+  has_many :items, :dependent => :destroy
+  has_many :trades, :dependent => :destroy
   attr_reader :password
   before_save :format_user_input
   validates :name, presence: true
@@ -9,7 +10,7 @@ validates :password, presence: true, confirmation: true, length: { in: 6..20 }
   	unless unencrypted_password.empty?
   		@password = unencrypted_password
   		self.password_digest = BCrypt::Password.create(unencrypted_password)
- 	 end
+ 	  end
   end	
 
   def authenticate(unencrypted_password)
@@ -17,8 +18,10 @@ validates :password, presence: true, confirmation: true, length: { in: 6..20 }
   		return self
   	else 
   		return false
+    end
   end
- end
+
+  mount_uploader :image, ProfilePicUploader
 
  private
  def format_user_input

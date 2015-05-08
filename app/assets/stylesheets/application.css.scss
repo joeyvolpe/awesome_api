@@ -16,6 +16,8 @@
 
  @import 'bootstrap-sprockets';
  @import 'bootstrap';
+ @import "semantic-ui";
+ @import "semantic-ui/collections/menu";
 
 
 .flash {
@@ -23,3 +25,6 @@
   border-radius: 10px;
   margin: 5px;
 }
+
+
+
