@@ -28,14 +28,22 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @item = Item.update_attributes(item_params)
+    @user = User.find(@item.user_id)
+    @item.update_attributes(item_params)
+
+    if @item.update_attributes(item_params)
+      redirect_to user_path(@user), notice: 'Item was successfully updated.' 
+    else
+      render :edit
+    end
+
 
   end
 
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to user_path(@item.user)
+    redirect_to user_path(@item.user), notice: 'Item was successfully deleted.' 
   end
 
   def item_params

@@ -11,11 +11,11 @@
 	    	
 	    	<div>
 		    	<div>
-		    	<%= button_to "Accept Trade!", accept_trade_path(trade), method: :post, :class => "btn btn-primary" %>
+		    	<%= button_to "Accept Trade!", accept_trade_path(trade), method: :post, :class => "btn btn-primary", data: { confirm: "Are you sure?" } %>
 		    	</div>
 		    	<br>
 		    	<div>
-		    	<%= button_to "Reject Trade!", reject_trade_path(trade), method: :post, :class => "btn btn-danger"  %>
+		    	<%= button_to "Reject Trade!", reject_trade_path(trade), method: :post, :class => "btn btn-danger", data: { confirm: "Are you sure?" }  %>
 		    	</div>
 		    </div>
 	    </div>

@@ -25,6 +25,9 @@
 			  <br>
 			  <strong>Item:</strong> 
 			  <%= item.item_name %>
+			  <% if user_access? %>
+			  	<%= link_to 'Edit', edit_item_path(item) %>
+			  <% end %>
 			  <br>
 			  <em><%= item.item_description %></em>
 			  <br>

@@ -7,13 +7,12 @@
   <div class="well well-xs">
     <% @items.reverse.each do |item| %>
       <%= image_tag item.item_image.url(:thumb)  %>
-      <strong><%= link_to "#{item.item_name}", item %></strong> by 
+      <strong><%= link_to "#{item.item_name}", user_path(item.user_id) %></strong> by <%= item_owner(item) %>
       <em><%#= link_to "#{item.user.name},", user_path(item.user) %></em>
       <br> 
-      <%= item.created_at.strftime("created at %I:%M%p on %m/%d/%Y")%> 
+      <%= time_ago_in_words(item.created_at) %> ago
       <br>
-      <%= link_to 'Show', item, :class => "btn btn-primary" %>
-      <%= link_to 'Edit', edit_item_path(item), :class => "btn btn-primary" %>
+      <%= link_to 'Show', user_path(item.user_id), :class => "btn btn-primary" %>
       <br>
     <% end %>
   </div> 

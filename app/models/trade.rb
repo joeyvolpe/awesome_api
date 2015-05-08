@@ -18,4 +18,7 @@ class Trade < ActiveRecord::Base
 	def requestee
 		User.find(self.user_id)
 	end
+  
+
+ 
 end
