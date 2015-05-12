@@ -1,3 +1,9 @@
-<% @trades.reverse.each do |trade| %>
-	<%= User.find(trade.user_a_id).name %>
-<% end %>
+<div>
+	<ul>
+		<% @trades.reverse.each do |trade| %>
+			<div>
+				<%= trade_requester_name(trade) %>  Traded a <%= offered_item_name(trade) %> for a <%= requested_item_name(trade) %> With <%= trade_requestee_name(trade) %>  
+			</div>
+		<% end %>
+	</ul>
+</div>
