@@ -6,6 +6,10 @@ Rails.application.routes.draw do
  post 'login' => 'sessions#create'
  delete 'logout' => 'sessions#destroy'
 
+ get 'index' => 'timelines#index'
+
+
+
 
  resources :users, except: [:new]
  get 'contact' => 'static_pages#contact'

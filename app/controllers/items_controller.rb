@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
     @user = User.find(params[:id])
     @item = @user.items.new(item_params)
     if @item.save
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), notice: "Item was successfully created!"
     else
       render :new
     end
@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to user_path(@item.user), notice: 'Item was successfully deleted.' 
+    redirect_to user_path(@item.user_id), notice: 'Item was successfully deleted.' 
   end
 
   def item_params

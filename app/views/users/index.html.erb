@@ -2,17 +2,28 @@
 	<div>
 		<ul>
 			<% @users.each do |user| %>
-				<div>
-					<li>
-					<%= image_tag user.image.url %>
-					<%= user.name %>
-					<%= link_to 'Show', user, :class => "btn btn-primary" %>
-					<%= link_to 'Edit', edit_user_path(user), :class => "btn btn-primary" %><%= link_to 'Delete', user, :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
-					<br>
-					<br>
-					</li>
+				<%= link_to user_path(user) do %>
+				<div class="ui link items">
+				  <div class="item">
+				    <div class="ui tiny image">
+				     <%= image_tag user.image.url %>
+				    </div>
+				    <div class="content">
+				      <div class="header"><%= user.name %></div>
+				      <div class="description">
+				        <p>Trade with me!</p>
+				      </div>
+				    </div>
+				  </div>
 				</div>
+				<% end %>
+
+
 			<% end %>
 		</ul>
 	</div>
 </div>
+
+
+
+

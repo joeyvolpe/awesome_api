@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   def offered_item_name(trade)
-    Item.find(trade.item_a_id).item_name
+     Item.find(trade.item_a_id).item_name
   end
 
   def requested_item_name(trade)

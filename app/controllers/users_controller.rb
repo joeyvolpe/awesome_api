@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 		if @user.update_attributes(user_params)
-			redirect_to users_path
+			redirect_to user_path(@user), notice: 'Your profile was successfully updated.'
 		else
 			render :edit
 		end
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     session[:user_id] = nil
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully deleted.' }
+      format.html { redirect_to users_url, notice: 'Your profile was successfully deleted.' }
       format.json { head :no_content }
       session[:user_id] = nil
     end
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   private
   def user_params
 
-    params.require(:user).permit(:name, :email, :password, :image, :trade_pending)
+    params.require(:user).permit(:name, :last_name, :email, :password, :image, :trade_pending)
 
   end
 end
