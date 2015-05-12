@@ -1,29 +1,49 @@
-<nav class="nav">
-	<ul class="nav nav-pills">
-		<li><%= link_to 'Home', root_path  %></li>
-		<% if logged_in? %>
-			<li><%= link_to "Trades", my_trades_path(current_user) %></li>
-			<li><%= link_to "#{current_user.name}", current_user %></li>
-			<li><%= link_to 'Logout', logout_path, method: :delete  %></li> 
-		<% else %>
-			<li><%= link_to 'Login', login_path %></li>	
-			<li><%= link_to 'Signup', new_user_path %></li>
-		<% end %>
-		<li><%= link_to 'Users', users_path %></li>
-		<li><%= link_to 'Items', items_path %></li>
-		
-	<% if logged_in? && pending_trades > 0 %>	
-		<ul>
-		    <li class="notification-container">
-		        <i class="icon-globe"></i>
-		        <span class="notification-counter"><%= pending_trades %></span>
-		    </li>
-		</ul>
-	<% end %>
-
-	</ul>
-</nav>
 
 
 
+<% if logged_in? %>
+	<div class="ui menu">
+		<div class="item">
+			<%= image_tag "logo.png", :class => "ui avatar image" %>
+			<%= link_to 'TradeMe', root_path  %>
+		</div>
+		<div class="item"><%= link_to 'Search Users', users_path %></div>
+		<div class="item"><%= link_to 'Items Available', items_path %></div>
+		<div class="item"><%= link_to "My Trades", my_trades_path(current_user) %>
+			<% if logged_in? && pending_trades > 0 %>
+				<div class="ui red label">
+					<%= pending_trades %>
+				</div>
+			<% end %>
+		</div>
+
+		<div class="ui dropdown">
+		    <div class="item"><%= "#{current_user.name}" %><i class="dropdown icon"></i></div>
+		    <div class="menu">
+		     <!--  <div class="header">Categories</div> -->
+		      <div class="item"><%= link_to "My Profile", current_user %></div>
+		      <div class="item"><%= link_to 'Logout', logout_path, method: :delete  %></div> 
+		      <!-- <div class="divider"></div> -->
+		    </div>
+	  	</div>
+	</div>
+
+<% else %>
+	<div class="ui menu">
+		<div class="item">
+			<%#= image_tag "logo.png", :class => "ui avatar image" %>
+			<%= link_to 'TradeMe', root_path  %>
+		</div>
+		<div class="item"><%= link_to 'Search Users', users_path %></div>
+		<div class="item"><%= link_to 'Items Available', items_path %></div>
+		<div class="item"><%= link_to 'Signup', new_user_path %></div>
+
+		<div class="item"><%= link_to 'Login', login_path %></div>
+	</div>
+<% end %>
+<br>
+
+<script type="text/javascript">
+	$('.dropdown').dropdown();
+</script>
 

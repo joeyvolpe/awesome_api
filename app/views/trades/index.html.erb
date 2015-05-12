@@ -1,3 +1,36 @@
-<% @trades.reverse.each do |trade| %>
-	<%= User.find(trade.user_a_id).name %>
-<% end %>
+<div class="ui page grid">
+
+<div class="sixteen wide column">
+	<div class="ui feed white segment" style="text-align: center">
+	<ul>
+		<% @trades.reverse.each do |trade| %>
+		
+			<div class="event" >
+					<div class="date">
+						3 days ago
+					</div>
+				
+				<div class="content">
+					<div class="summary">
+						<div class="left_images">
+							<span class="ui avatar image"><%= image_tag trade_requester(trade).image %></span>
+							<span class="ui tiny rounded image"><%= image_tag offered_item(trade).item_image %></span>
+						</div>
+							<a href><%= trade_requester(trade).name %></a>
+							 Traded a <a><%= offered_item(trade).item_name %></a>
+							 for a <a><%= requested_item(trade).item_name %></a>
+							 With <a><%= trade_requestee(trade).name %></a>
+						<div class="right_images">				
+							 <span class="ui tiny rounded image"><%= image_tag requested_item(trade).item_image %></span>
+							<span class="ui avatar image"><%= image_tag trade_requestee(trade).image %></span>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		<div class="ui divider">
+		</div>
+		<% end %>
+	</ul>
+</div>	
+</div>

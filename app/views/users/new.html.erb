@@ -1,4 +1,16 @@
 <div class="container-fluid">
+	<div class="error-messages">
+		<% if @user.errors.any?  %>
+			<div>
+				<h4 class="text-danger"><%= pluralize(@user.errors.count, "error")  %> prevented you from signing up for an account: </h4>
+					<ul class="list-group">
+						<% @user.errors.full_messages.each do |msg|  %>
+							<li class="list-group-item list-group-item-danger"><%= msg.capitalize %></li>
+						<% end %>
+					</ul>
+			</div>
+		<% end %>
+	</div>
 	<section>
 		<%= render 'form' %>
 	</section>

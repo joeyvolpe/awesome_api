@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507132825) do
+ActiveRecord::Schema.define(version: 20150510191218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["item_id"], name: "index_comments_on_item_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "item_image"
@@ -47,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150507132825) do
     t.string   "wishlist"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "last_name"
   end
 
   add_foreign_key "items", "users"

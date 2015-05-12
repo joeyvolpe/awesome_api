@@ -1,4 +1,42 @@
-<div class="container">
+<div class="ui page grid">
+
+<div class="six wide column">
+	<ul>
+	<div class="ui card">
+	  <div class="image">
+	    <%= image_tag @user.image.url %>
+	  </div>
+	  <div class="content">
+	    <a class="header"><%= @user.name %> <%= @user.last_name %></a>
+	    <div class="meta">
+	      <span class="date">Joined in 2014</span>
+	    </div>
+	    <div class="description">
+	      Stevie Feliciano is a library scientist living in New York City. She likes to spend her time reading, running, and writing.
+	    </div>
+	  </div>
+	  <div class="extra content">
+	    <a>
+	      <i class="user icon"></i>
+	      22 Friends
+	    </a>
+	  </div> 
+	  <% if user_access? %>
+	  <div class="extra content">
+	    <a>
+	      <i class="edit icon"></i>
+	      <%= link_to 'Edit Profile', edit_user_path(@user) %>
+	    </a>
+	  </div>
+	  <% end %>
+	</div>
+	</ul>
+</div>
+
+
+
+
+<div class="ten wide column">
 <% if user_access? %>
 	<h1>Welcome <%= @user.name %>!</h1>
 
@@ -6,31 +44,90 @@
 	<h1>Trade with <%= @user.name %>!</h1>
 <% end %>
 
-	<%= image_tag @user.image.url %>
 
-
-	<div>
-		<p id="alert alert-danger"><%= notice %></p>
+	<% if notice %>
+	<div class="ui error message">
+		<p><%= notice %></p>
 	</div>
-	<section>
-		<% @user.items.each do |item| %>
-			<div class="well well-sm">
-			  <%= image_tag @user.image.url(:thumb) %>
-			  <%= User.find(item.user_id).name %>
-			  <br>
-			  <br>
-			  <br>
-			  <%= image_tag item.item_image.url(:thumb) %>
-			  <br>
-			  <br>
-			  <strong>Item:</strong> 
-			  <%= item.item_name %>
-			  <br>
-			  <em><%= item.item_description %></em>
-			  <br>
+	<% end %>
 
-			  <br>
-			  <%= item.created_at.to_formatted_s(:long_ordinal) %>
+	<!-- section for the form for items -->
+	
+	<% if user_access? %>
+	<section>
+		<div class="ui styled fluid accordion">
+
+		    <div class="active title">
+		      <i class="plus icon"></i>
+		      Add A New Item
+		    </div>
+		    <div class="content">
+		      <%= form_for [@user, @item] do |f| %>
+				
+				<div class="ui fluid form">
+
+				  <div class="one field">
+				    <div class="required field">
+				      <label>Item Name:</label>
+				      <%= f.text_field :item_name, :placeholder => "Ex: Skateboard signed by Tony Hawk" %>
+				    </div>
+				    <div class="required field">
+				      <label>Describe your item:</label>
+				       <%= f.text_area :item_description, :placeholder => "Ex: Has some minor scratches but overall is in good condition, got it in 2014." %>
+				    </div>
+				    <div class="field">
+
+				    	 <div class="column"><i class="photo icon"></i><%= f.label 'Add An Image:' %><%= f.file_field :item_image, :class => "form-control" %></div>
+				      
+
+				      
+				    </div>
+
+
+				 
+				  </div>
+				 	<div class="center aligned">
+				        <div class="ui buttons">
+				        	
+				          <%= f.submit "Add new item!", :class => "ui positive button" %>
+				        </div>
+				    </div>
+				</div>
+				<% end %>
+			</div>
+			
+		    </div>
+	</section>
+	<% end %>	
+	<br>
+
+	<section>
+	
+
+		<% @user.items.each do |item| %>
+			<div class="ui white segment">
+
+			
+			  <div class="ui link items">
+			    <div class="item">
+			      <div class="ui tiny image">
+			       <%= image_tag item.item_image.url(:thumb) %>
+			      </div>
+			      <div class="content">
+			        <div class="header"><%= item.item_name %></div>
+			        <div class="description">
+			          <p><%= item.item_description %></p>
+			        </div>
+			        <div class="extra">
+			        			Added <%= time_ago_in_words(item.created_at) %> ago. <br>
+			               <% if user_access? %>
+			               	<%= link_to 'Edit', edit_item_path(item) %>
+			               	<%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } %>
+			               <% end %>
+			             </div>
+			      </div>
+			    </div>
+			    </div>
 
 			  <% if view_button(item) %>
 			  	<%= form_for [@user, @trade], url: "#{@user.id}/items/#{item.id}/trades/start_trade" do |f| %>
@@ -40,37 +137,34 @@
 			  			<%= f.hidden_field :user_id, :value => @user.id %>
 			  			<%= f.submit "Request Trade!" %>
 			  		</div>
+
 			  	<% end %>
 			  <% end %>
 			</div>
+
+
+		
 		<% end %>
-	</section>
-
-	<!-- section for the form for items -->
-	<% if user_access? %>
-		<section>
-			<%= form_for [@user, @item] do |f| %>
-				<div class="well well-xs">
-				  <strong><%= f.label :item_name %>:</strong>
-				  <%= f.text_field :item_name %>
-				  <br>
-				  <strong><%= f.label :item_description %>:</strong>
-				  <%= f.text_area :item_description %>
-				  <br>
-
-
-				  <%= f.file_field :item_image, class: 'btn btn-submit' %>
-				  <br>
-				</div>
-				<div class="well well-sm">
-				  <%= f.submit "Add new item!" %>
-				</div>
-				</div>
-				
-			<% end %>
-		</section>
-	<% end %>
 	
 
-  
+
+	
+	</section>
+	
+
+
+
 </div>
+</div>
+
+  
+<script type="text/javascript">
+	$('.ui.accordion').accordion();
+
+	$("title").hover(function() {
+	    $(this).css("background-color", "yellow");
+	}, function() {
+	    $(this).css("background-color", "");
+	});
+</script>
+
