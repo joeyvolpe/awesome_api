@@ -1,4 +1,4 @@
-<%= form_for @user do |f|  %>
+ <%= form_for @user do |f|  %>
 		<div class: "form-group">
 			<%= f.label :name  %>
 			<%=  f.text_field :name, class: "form-control" %>
@@ -17,6 +17,13 @@
 			<%= f.label :password  %>
 			<%=  f.password_field :password, class: "form-control" %>
 		</div>
+		<!-- Will only show if new user is being made -->
+		<% if @user.new_record? %> 
+			<%= f.label :password, "Confirmation"  %>
+			<%= f.password_field :password, class: "form-control"  %>
+		<% end %>
+		<!-- end optional form input for new/edit user -->
+
 		<div>
 			<%= f.file_field :image %>
 		</div>

@@ -16,10 +16,20 @@
 
  @import 'bootstrap-sprockets';
  @import 'bootstrap';
-
  @import "semantic-ui";
  @import "semantic-ui/collections/menu";
+
+
+.flash {
+  padding: 15px;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+
+
 
  .menu {
  	margin-bottom: 10px;
  }
+

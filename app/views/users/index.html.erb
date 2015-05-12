@@ -1,5 +1,12 @@
 <div>
 	<div>
+	<div>
+			<%= form_tag users_path, method: 'get', :class=>"form-inline" do  %>
+				<%= text_field_tag :q, nil  %>
+				<%= submit_tag "Search", :class=>"btn btn-submit"  %>
+			<% end %>
+	</div>
+	<br>
 		<ul>
 			<% @users.each do |user| %>
 				<%= link_to user_path(user) do %>
@@ -21,9 +28,13 @@
 
 			<% end %>
 		</ul>
+		<br>
+		<div>
+			<%= form_tag users_path, method: 'get', :class=>"form-inline" do  %>
+				<%= text_field_tag :q, nil  %>
+				<%= submit_tag "Search", :class=>"btn btn-submit"  %>
+			<% end %>
+		</div>
 	</div>
 </div>
-
-
-
 
