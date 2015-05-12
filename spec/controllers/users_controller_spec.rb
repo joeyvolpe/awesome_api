@@ -32,4 +32,32 @@ RSpec.describe UsersController, :type => :controller do
 			expect(response).to have_http_status(200)
 		end
 	end
+
+	describe "GET #new" do
+		before :each do
+			get :new
+		end
+		it "should render the correct page" do
+			expect(response).to render_template :new
+		end
+		it "should have status code of 200" do
+			expect(response).to have_http_status(200)
+		end
+		it "does not persist the user to the database" do
+			expect{User.new}.to change(User, :count).by(0)
+		end
+	end
+
+	describe "POST #create" do
+		it "should return status code 200" do
+			expect(response).to have_http_status(200)
+		end
+	end
+
+	describe "DELETE #destroy" do
+		it "redirects to index page" do
+			get :index
+			expect(response).to render_template :index
+		end
+	end
 end
