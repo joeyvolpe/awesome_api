@@ -18,6 +18,7 @@ module ApplicationHelper
   end
 
   def user_access?
+
     if logged_in? && current_user.id == @user.id
       return true
     else
@@ -45,8 +46,10 @@ module ApplicationHelper
   # below are methods to access info for the items index
 
   def item_owner(item)
-    User.find(item.user_id).name
+    User.find(item.user_id)
   end
+
+
 
 
 end
