@@ -1,22 +1,23 @@
 <br>
-<div class="container-fluid">
-  <div class="well well-xs">
-    <h2 id="logo"><%= @item.item_name %></h2>
-    <%= link_to "item timeline", items_path %>
-  </div>
-  <br>
-  <div class="well well-sm">
-   by 
-    <br>created on 
-    <%= @item.created_at.to_formatted_s(:long_ordinal) %>
-    <br>
-    <br>
-    <%=image_tag @item.item_image.url(:thumb)  %>
-    <strong>Name:</strong> 
-    <%= @item.item_name %>
-    <br>
-    <strong>Description:</strong> 
-    <em><%= @item.item_description %></em>
-    <br>
+<div class="ui page grid">
+  <div class="twelve wide column">
+    <div class="ui card">
+      <div class="image">
+        <%= image_tag @item.item_image.url(:thumb) %>
+      </div>
+      <div class="content">
+        <div class="header">
+          <%= @item.item_name %>
+        </div>
+        <div class="meta">
+          <span class="date">
+            Added <%= time_ago_in_words(@item.created_at) %> ago
+          </span>
+        </div>
+        <div class="description">
+          <%= @item.item_description %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

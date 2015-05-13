@@ -4,11 +4,14 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
   validates :last_name, presence: true
-  attr_reader :password
   before_save :format_user_input
-  validates :name, presence: true
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  
   has_secure_password
+
+
+  attr_reader :password
+  
   # def password=(unencrypted_password)
   # 	unless unencrypted_password.empty?
   # 		@password = unencrypted_password

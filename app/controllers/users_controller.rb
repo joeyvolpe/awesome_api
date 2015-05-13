@@ -63,7 +63,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :trade_pending)
+    params.require(:user).permit(:name, :last_name, :email, :password, :password_confirmation, :image, :trade_pending)
   end
 
   def require_login?
