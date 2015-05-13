@@ -3,8 +3,8 @@
 <% if logged_in? %>
 	<div class="ui menu">
 		<div class="item">
-			<%= image_tag "logo.png", :class => "ui avatar image" %>
-			<%= link_to 'TradeMe', root_path  %>
+			<%= link_to (image_tag "logo.png"), current_user, :class => "ui avatar image" %>
+			<%= link_to 'Home', root_path  %>
 		</div>
 		<div class="item"><%= link_to 'Search Users', users_path %></div>
 		<div class="item"><%= link_to 'Items Available', items_path %></div>
@@ -16,15 +16,12 @@
 			<% end %>
 		</div>
 
-		<div class="ui dropdown">
-		    <div class="item"><%= "#{current_user.name}" %><i class="dropdown icon"></i></div>
-		    <div class="menu">
-		     <!--  <div class="header">Categories</div> -->
-		      <div class="item"><%= link_to "My Profile", current_user %></div>
+		
+		    <div class="item"><%= link_to "#{current_user.name}", current_user %></div>
+		   
 		      <div class="item"><%= link_to 'Logout', logout_path, method: :delete  %></div> 
-		      <!-- <div class="divider"></div> -->
-		    </div>
-	  	</div>
+		   
+	  	
 	</div>
 
 <% else %>

@@ -36,6 +36,8 @@
 
 
 
+
+
 <div class="ten wide column">
 <% if user_access? %>
 	<h1>Welcome <%= @user.name %>!</h1>
@@ -46,7 +48,7 @@
 
 
 	<% if notice %>
-	<div class="ui error message">
+	<div class="ui message"> <!-- Verificar que tipo de mensage -->
 		<p><%= notice %></p>
 	</div>
 	<% end %>
@@ -101,18 +103,22 @@
 	<% end %>	
 	<br>
 
+
 	<section>
 	
-
+			      
 		<% @user.items.each do |item| %>
 			<div class="ui white segment">
-
-			
 			  <div class="ui link items">
 			    <div class="item">
 			      <div class="ui tiny image">
 			       <%= image_tag item.item_image.url(:thumb) %>
 			      </div>
+			     
+
+
+			  
+
 			      <div class="content">
 			        <div class="header"><%= item.item_name %></div>
 			        <div class="description">
@@ -127,14 +133,26 @@
 			             </div>
 			      </div>
 			    </div>
+			   </div>
+
+			   <% if view_button(item) %>
+
+
+			   <% end %>
+
+
+
 
 			  <% if view_button(item) %>
 			  	<%= form_for [@user, @trade], url: "#{@user.id}/items/#{item.id}/trades/start_trade" do |f| %>
-			  	    <div class="well well-sm">
-						<%= f.select :item_a_id, current_user.items.all.collect {|p| [ p.item_name, p.id ] }, {prompt: 'Select Item'} %>
+			  	    <div class="well well-sm centered">
+						<%= f.select :item_a_id, current_user.items.all.collect {|p| [ p.item_name, p.id ] }, {prompt: 'My Items'}, :class => "item" %>
+
+					
+
 			  			<%= f.hidden_field :user_a_id, :value => current_user.id %>
 			  			<%= f.hidden_field :user_id, :value => @user.id %>
-			  			<%= f.submit "Request Trade!" %>
+			  			<%= f.submit "Request Trade!", :class => "small ui primary button " %>
 			  		</div>
 
 			  	<% end %>
@@ -144,20 +162,32 @@
 
 		
 		<% end %>
-	
-
 
 	
 	</section>
-	
 
 
 
 </div>
 </div>
 
+
+
+<%#= button_to "Request Trade!", '#', :class => "standard.test.modal" %>
+<!-- <div class="ui button" id="showmemodal">Launch modal</div> -->
+ 
   
 <script type="text/javascript">
+
+	
+	$('#showmemodal').on('click', function(){
+		$('.ui.large.test.modal').modal('show');
+	})
+
+	// var button = document.querySelector('#show_modal')
+	// button.addEventListener('click', function () {$('.standard.test.modal').modal('show');}).modal('show');
+	
+
 	$('.ui.accordion').accordion();
 
 	$("title").hover(function() {
@@ -165,5 +195,9 @@
 	}, function() {
 	    $(this).css("background-color", "");
 	});
+
+	$('.ui.dropdown').dropdown();
+
+
 </script>
 
