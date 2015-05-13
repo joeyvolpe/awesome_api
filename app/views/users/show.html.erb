@@ -132,7 +132,7 @@
 			  <% if view_button(item) %>
 			  	<%= form_for [@user, @trade], url: "#{@user.id}/items/#{item.id}/trades/start_trade" do |f| %>
 			  	    <div class="well well-sm">
-						<%= f.select :item_a_id, current_user.items.all.collect {|p| [ p.item_name, p.id ] }, {prompt: 'Select Item'} %>
+						<%= f.select :item_a_id, current_user.items.all.collect {|p| [ truncate(p.item_name, length: 30), p.id ] }, {prompt: 'Select Item'} %>
 			  			<%= f.hidden_field :user_a_id, :value => current_user.id %>
 			  			<%= f.hidden_field :user_id, :value => @user.id %>
 			  			<%= f.submit "Request Trade!" %>
