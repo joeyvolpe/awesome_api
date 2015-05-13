@@ -1,32 +1,39 @@
 <div class="ui page grid">
 
 		<div class="ui large feed white segment" >
-			<ul>
+			
 				<% @trades.reverse.each do |trade| %>
 				
+					<ul>
 					<div class="event">
-						
-
-
-				
-									<div class="ui centered grid">
-									    <div class="two wide column ui header"><%= image_tag trade_requester(trade).image, :class => "ui small fluid image" %><%= trade_requester(trade).name %> <%= trade_requester(trade).last_name %></div>
-									    <div class="two wide column ui header">Traded A</div>
-
-									    <div class="two wide column"><%= image_tag offered_item(trade).item_image, :class => "ui small fluid image" %><%= h truncate(offered_item(trade).item_name, :length => 30) %></div>
-									    <div class="two wide column ui header">For A</div>
-									    <div class="two wide column"><%= image_tag requested_item(trade).item_image, :class => "ui small fluid image"  %><%= h truncate(requested_item(trade).item_name, :length => 30) %></div>
-									    <div class="two wide column ui header">With</div>
-									    <div class="two wide column ui header"><%= image_tag trade_requestee(trade).image, :class => "ui small fluid image" %><%= trade_requestee(trade).name %> <%= trade_requestee(trade).last_name %></div>
-									  </div>
-
-									  <div class="ui divider"></div>
-
-							
+						<div class="ui equal width center aligned grid">
+	
+							<div class="seven column middle aligned row">
 					
-						</div>
-					
+							   <div class="column ui "><%= image_tag trade_requester(trade).image, :class => "ui small fluid image" %><%= trade_requester(trade).name %> <%= trade_requester(trade).last_name %>
+							   </div>
+						   	 <div class="column ui">
+						   	 	TRADED
+						   	 </div>
+
+							    <div class="column ui"><%= image_tag offered_item(trade).item_image, :class => "ui small fluid image" %><%= h truncate(offered_item(trade).item_name, :length => 30) %>
+							   </div>
+						    	<div class="column ui">
+						    		FOR
+						    	</div>
+						    	<div class="column ui"><%= image_tag requested_item(trade).item_image, :class => "ui small fluid image"  %><%= h truncate(requested_item(trade).item_name, :length => 30) %>
+							   </div>
+						    	<div class="column ui">
+						    		WITH
+						    	</div>
+						    	<div class="column ui "><%= image_tag trade_requestee(trade).image, :class => "ui small fluid image" %><%= trade_requestee(trade).name %> <%= trade_requestee(trade).last_name %>
+						    	</div>
+						  	</div>
+
+						 <div class="ui divider"></div>
+					</div>
+				</div>
+				</ul>
 			<% end %>
-		</ul>
 	</div>	
 
