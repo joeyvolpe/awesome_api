@@ -130,23 +130,20 @@
 			               	<%= link_to 'Edit', edit_item_path(item) %>
 			               	<%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } %>
 			               <% end %>
-			             </div>
+			        </div>
 			      </div>
 			    </div>
+
 			   </div>
 
 			   <% if view_button(item) %>
-
-
 			   <% end %>
-
-
-
-
 			  <% if view_button(item) %>
+
+			  	
 			  	<%= form_for [@user, @trade], url: "#{@user.id}/items/#{item.id}/trades/start_trade" do |f| %>
 			  	    <div class="well well-sm centered">
-						<%= f.select :item_a_id, current_user.items.all.collect {|p| [ p.item_name, p.id ] }, {prompt: 'My Items'}, :class => "item" %>
+						<%= f.select :item_a_id, current_user.items.all.collect {|p| [ truncate(p.item_name, length: 30), p.id ] }, {prompt: 'My Items'}, :class => "item" %>
 
 					
 

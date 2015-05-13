@@ -18,6 +18,7 @@ module ApplicationHelper
   end
 
   def user_access?
+
     if logged_in? && current_user.id == @user.id
       return true
     else
@@ -26,27 +27,29 @@ module ApplicationHelper
   end
 
   ## below are the methods to access completed trades for the trades index
-  def trade_requester_name(trade)
-    User.find(trade.user_a_id).name
+  def trade_requester(trade)
+    User.find(trade.user_a_id)
   end
 
-  def offered_item_name(trade)
-     Item.find(trade.item_a_id).item_name
+  def offered_item(trade)
+     Item.find(trade.item_a_id)
   end
 
-  def requested_item_name(trade)
-    Item.find(trade.item_id).item_name
+  def requested_item(trade)
+    Item.find(trade.item_id)
   end
 
-  def trade_requestee_name(trade)
-    User.find(trade.user_id).name
+  def trade_requestee(trade)
+    User.find(trade.user_id)
   end
 
   # below are methods to access info for the items index
 
   def item_owner(item)
-    User.find(item.user_id).name
+    User.find(item.user_id)
   end
+
+
 
 
 end

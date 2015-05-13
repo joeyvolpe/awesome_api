@@ -1,14 +1,22 @@
-<%= form_for @item do |f| %>
-    <div class="well well-xs">
-      <strong><%= f.label :item_name %>:</strong>
-      <%= f.text_field :item_name %>
-      <br>
-      <strong><%= f.label :item_description %>:</strong>
-      <%= f.text_area :item_description %>
-      <%= f.file_field :item_image %> 
-      <br>
-    </div>
-    <div class="well well-sm">
-      <%= f.submit "Submit" %>
-    </div>
-<% end %>
+<div class="ui page grid">
+  <div class="eight wide column">
+    <form class="ui form segment">
+      <%= form_for @item do |f| %>
+        <div class="field">
+          <%= f.label :item_name %>
+          <%= f.text_field :item_name %>
+        </div>
+        <div class="field">
+          <%= f.label :item_description %>
+          <%= f.text_area :item_description %>
+        </div>
+        <div class="field">
+          <%= f.file_field :item_image %> 
+        </div>
+        <div class="button">
+          <%= f.submit "Submit" %>
+        </div>
+      <% end %>
+    </form>
+  </div>
+</div>

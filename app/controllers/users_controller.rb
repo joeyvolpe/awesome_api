@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
-
+  before_action :require_login?, except: [:index, :new, :create]
+  before_action :authorized?, only: [:edit, :update]
   def index
-    @users = User.all
+    if params[:q]
+      @users = User.where( 'name like ?', '%' + params[:q] + '%' )
+    else
+      @users = User.all
+    end
   end
 
   def show
@@ -18,9 +23,14 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+
+       # Will auto log user in when they sign up for a new account
       session[:user_id] = @user.id.to_s
-      flash[:welcome] = "Thanks for signing up #{@user.name}!"
+       # End auto log in
+      flash[:welcome] = "Thanks for signing up, #{@user.name}!"
+
       redirect_to users_path
+
     else
       render :new
     end
@@ -53,8 +63,20 @@ class UsersController < ApplicationController
 
   private
   def user_params
+    params.require(:user).permit(:name, :last_name, :email, :password, :password_confirmation, :image, :trade_pending)
+  end
 
-    params.require(:user).permit(:name, :last_name, :email, :password, :image, :trade_pending)
+  def require_login?
+    unless logged_in?
+      flash[:error] = "You must be logged in to access that page."
+    end
+  end
 
+
+  def authorized?
+    unless current_user == User.find(params[:id])
+      flash[:error] = "You are not authorized to access that page."
+      redirect_to users_path
+    end
   end
 end

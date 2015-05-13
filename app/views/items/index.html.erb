@@ -1,25 +1,36 @@
-<br>
-<div class="container-fluid">
-  <div class="well well-xs">
-    <h2 id="logo">Today's Items</h2>
+
+<div class="ui page grid">
+  <div class="twelve wide column">
+    <div class="ui center aligned large feed">
+      <% @items.reverse.each do |item| %>
+        <div class="event">
+          <div class="label">
+            <div class="ui tiny circular image">
+              <%= image_tag item_owner(item).image %>
+            </div>
+          </div>
+          <div class="content">
+            <div class="summary">
+                <%= link_to item_owner(item).name, user_path(item.user_id) %> added a <%= link_to truncate(item.item_name, length: 30), item_path(item) %>.
+              <div class="date">
+                <%= time_ago_in_words(item.created_at) %> ago.
+              </div>
+            </div>
+            <br>
+            <div class="extra images">
+              <div class="ui huge image"><%= image_tag item.item_image.url %></div>
+            </div>  
+            <br>
+            <div class="extra text">
+              <%= item.item_description %>
+            </div>
+          </div>
+        </div>
+        <br>
+      <% end %>
+    </div>
+  </div>
 </div>
-  <br>
-  <div>
-    <ul>
-    <% @items.reverse.each do |item| %>
-      <%= image_tag item.item_image.url(:thumb)  %>
-      <%= link_to "#{item.item_name}", user_path(item.user_id) %></strong> by <%= item_owner(item) %>
-      <em><%#= link_to "#{item.user.name},", user_path(item.user) %></em>
-      <br> 
-      <%= time_ago_in_words(item.created_at) %> ago
-      <br>
-      <%= link_to 'Show', user_path(item.user_id), :class => "btn btn-primary" %>
-      <br>
-    <% end %>
-    </ul>
-  </div> 
-  <br>
-  <br>
-</div>
+
 
 
