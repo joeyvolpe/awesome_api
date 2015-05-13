@@ -1,18 +1,26 @@
-<div>
-	<div>
-	<div>
-			<%= form_tag users_path, method: 'get', :class=>"form-inline" do  %>
-				<%= text_field_tag :q, nil  %>
-				<%= submit_tag "Search", :class=>"btn btn-submit"  %>
+<div class="ui">
+	<div class>
+<div class>
+	<div class="ui row segment form">
+		<div class="inline fields">
+			<%= form_tag users_path, method: 'get', :class => "eight wide field"  do %>
+				<%= text_field_tag :q, nil, :placeholder => "Search Users..."  %>
+				<%= submit_tag "Search", :class=> "field btn btn-submit"  %>
 			<% end %>
+		</div>
 	</div>
+</div>
+
 	<br>
+	<div class="ui page grid">
+	<br>
+		<div class="left floated ten wide column">
 		<ul>
 			<% @users.each do |user| %>
 				<%= link_to user_path(user) do %>
-				<div class="ui link items">
+				<div class="ui link items white segment">
 				  <div class="item">
-				    <div class="ui tiny image">
+				    <div class="ui small image">
 				     <%= image_tag user.image.url %>
 				    </div>
 				    <div class="content">
@@ -23,18 +31,27 @@
 				    </div>
 				  </div>
 				</div>
+				<br>
 				<% end %>
-
-
 			<% end %>
 		</ul>
+	</div>
+</div>
+
+
 		<br>
-		<div>
-			<%= form_tag users_path, method: 'get', :class=>"form-inline" do  %>
-				<%= text_field_tag :q, nil  %>
-				<%= submit_tag "Search", :class=>"btn btn-submit"  %>
-			<% end %>
+
+	<div class>
+		<div class="ui row segment form">
+			<div class="inline fields">
+				<%= form_tag users_path, method: 'get', :class=>"eight wide field" do  %>
+					<%= text_field_tag :q, nil, :placeholder =>"Search Users..."  %>
+					<%= submit_tag "Search", :class=>"field btn btn-submit"  %>
+				<% end %>
+			</div>
 		</div>
+	</div>
+
 	</div>
 </div>
 
