@@ -9,7 +9,9 @@
 							<div class="seven column middle aligned row">
 							   <div class="column ui"><%= image_tag trade_requester(trade).image, :class => "ui small fluid image" %><%= trade_requester(trade).name %> <%= trade_requester(trade).last_name %>
 							   </div>
-						   	<div class="column ui">
+
+						   	 <div class="column ui">
+
 						   	 	TRADED
 						   	</div>
 							   <div class="column ui"><%= image_tag offered_item(trade).item_image, :class => "ui small fluid image" %><%= h truncate(offered_item(trade).item_name, :length => 30) %>
@@ -19,7 +21,7 @@
 						    	</div>
 						    	<div class="column ui"><%= image_tag requested_item(trade).item_image, :class => "ui small fluid image"  %><%= h truncate(requested_item(trade).item_name, :length => 30) %>
 							   </div>
-						    	<div class="column ui">
+						    	<div class="column ui ">
 						    		WITH
 						    	</div>
 						    	<div class="column ui "><%= image_tag trade_requestee(trade).image, :class => "ui tiny fluid image" %><%= trade_requestee(trade).name %> <%= trade_requestee(trade).last_name %>
