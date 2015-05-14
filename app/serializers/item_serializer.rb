@@ -5,7 +5,8 @@ class ItemSerializer < ActiveModel::Serializer
 
 
 	def user
-		object
+		user_id = object.user_id
+		User.find(user_id).name
 	end
 
   
