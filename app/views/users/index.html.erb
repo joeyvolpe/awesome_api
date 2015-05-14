@@ -1,33 +1,6 @@
-
-	<!-- <br>
-	<div class="ui page grid">
-	<br>
-		<div class="left floated ten wide column">
-		<ul>
-			<% @users.each do |user| %>
-				<%=link_to user_path(user) do %>
-				<div class="ui link items white segment">
-				  <div class="item">
-				    <div class="ui small image">
-				     <%= image_tag user.image.url %>
-				    </div>
-				    <div class="content">
-				      <div class="header"><%= user.name %></div>
-				      <div class="description">
-				        <p>Trade with me!</p>
-				      </div>
-				    </div>
-				  </div>
-				</div>
-				<br>
-				<% end %>
-			<%end %>
-		</ul>
-	</div>
-</div> -->
 <div class="ui page grid">
 
-<div class="ui grid  white segment">
+<div class="ui grid white segment">
 	<div class="sixteen wide column">
 			<div class="inline fields">
 				<%= form_tag users_path, method: 'get', :class => "eight wide field"  do %>
@@ -39,7 +12,7 @@
 </div>
 
 <div class="grid">
-<div class="ui cards three column row">
+<div class="ui three cards">
 	<% @users.each do |user| %>
 
 	<div class="card">
