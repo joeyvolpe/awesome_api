@@ -4,7 +4,7 @@ gem 'carrierwave'
 gem 'fog'
 gem 'rmagick'
 gem 'figaro'
-
+gem 'active_model_serializers'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass', branch: 'v1.0beta'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

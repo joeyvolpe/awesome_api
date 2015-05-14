@@ -1,7 +1,7 @@
 module API
 	class ItemsController < ApplicationController
 		def index
-			render json: Item.all
+			render json: @items = Item.all
 		end
 
 		def show

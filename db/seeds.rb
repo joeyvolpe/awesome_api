@@ -16,7 +16,7 @@ Item.destroy_all
 # ])
 
 items = Item.create([
-	{item_name: "stick", item_description: "long", user_id: 1},
+	{item_name: "stick", item_description: "long", user_id: 1, item_image: "http://slodive.com/wp-content/uploads/2013/02/popular-logos/popular-twitter-logo.jpg"},
 	{item_name: "rock", item_description: "hard", user_id: 1},
 	{item_name: "paper", item_description: "light", user_id: 1}
 ])
