@@ -1,16 +1,26 @@
-<div class="container-fluid">
-	<section class="form-group">
-		<%= form_for :login do |f|  %>
-			<div>
-				<%= f.label :email  %>
-				<%= f.text_field :email, class: "form-control"  %>
-			</div>
-			<div>
-				<%= f.label :password  %>
-				<%= f.password_field :password, class: "form-control"  %>
-			</div>
 <br>
-			<%= f.submit "Login", class: "btn btn-submit" %>
-		<% end %>
-	</section>
+<br>
+<div class="ui page grid">
+  <div class="six wide centered column">
+   	<h1 class= "ui white segment" style="text-align: center">LOG IN <i class="arrow right icon"></i>TRADE</h1>
+  </div>
+</div>
+<div class="ui page grid">
+  <div class="six wide centered column">
+	  <div class="ui form segment">
+			<%= form_for :login do |f|  %>
+				<div class="field">
+					<%= f.label :email %>
+					<%= f.text_field :email %>
+				</div>
+				<div class="field">
+					<%= f.label :password  %>
+					<%= f.password_field :password %>
+				</div>
+				<div class="button">
+					<%= f.submit "Login" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
 </div>

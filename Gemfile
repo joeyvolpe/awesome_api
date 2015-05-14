@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-ruby 
+
+
 gem 'carrierwave'
 gem 'fog'
 gem 'rmagick'
