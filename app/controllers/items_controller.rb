@@ -34,9 +34,9 @@ class ItemsController < ApplicationController
     if @item.update_attributes(item_params)
       redirect_to user_path(@user), notice: 'Item was successfully updated.' 
     else
+    
       render :edit
     end
-
 
   end
 
