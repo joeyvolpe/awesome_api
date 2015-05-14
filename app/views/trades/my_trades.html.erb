@@ -1,13 +1,17 @@
+<div class="ui centered grid">
+
+
 	<% if @trades.blank? %>
     	<p>No trades pending</p>
     <% else %>
     <% @trades.each do |trade| %>
-	    <div class="well well-sm">
+	    <div class="ten wide column centered aligned ui white segment">
 	    	<p>Trade Requested By: <%= trade.requester.name %></p>
 	    	<p>Item offered: <%= trade.offered_item.item_name %></p>
+	    	<p><%= image_tag Item.find(trade.offered_item).item_image, :class => "ui tiny image centered aligned" %></p>
 	    	<p>Item description: <%= trade.offered_item.item_description %> </p>
 	    	<p>Item Requested: <%= trade.requested_item.item_name %></p>
-	    	<p>Item status: <%= trade.status %></p>
+	    	<p><%= image_tag Item.find(trade.requested_item).item_image, :class => "ui tiny image centered aligned " %>
 	    	
 	    	<div>
 		    	<div>
@@ -22,3 +26,53 @@
     <% end %>
 <% end %>
 
+<% unless @waiting_response_trades.blank? %>
+
+<div class="weight wide segment">
+<hr>
+
+<h3>Trades Waiting For A Response</h3>
+
+</div>
+        <% @waiting_response_trades.each do |trade| %>
+       
+    	    <div class="eight wide column centered ">
+    	     <div class="ui segment">
+    	       <div class="ui items">
+    	         <div class="item">
+    	         	 	<div class="left floated segment">
+			    	           <div class="ui tiny image">
+			    	             <%= image_tag Item.find(trade.offered_item).item_image %>
+			    	           </div>
+		    	             <a class="header">Your <%= trade.offered_item.item_name %></a>
+		    	 		</div>
+    	            <div class="ui vertical divider">
+    	                 For
+    	            </div>
+
+    	            <div class="right floated segment">
+    	          	<div class="ui middle aligned segment">
+    	            	 <a class="header"><%= trade.requestee.name %>'s <%= trade.requested_item.item_name.split.map(&:capitalize)*' ' %> </a>
+    	       
+
+    	           <div class="ui tiny image">
+    	             <%= image_tag Item.find(trade.requested_item).item_image %>
+    	           </div>
+    	           </div>
+    	           </div>
+    	        </div>
+    	     </div>
+	
+    	    </div>
+
+
+    	    </div>
+
+   
+        <% end %>
+<% end %>
+
+
+
+
+</div>

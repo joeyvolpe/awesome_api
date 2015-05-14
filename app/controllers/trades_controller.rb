@@ -1,6 +1,5 @@
 class TradesController < ApplicationController
   def show
-
   end
 
   def index
@@ -9,6 +8,7 @@ class TradesController < ApplicationController
 
   def my_trades
     @trades = current_user.trades.where(status: 'active')
+    @waiting_response_trades = Trade.where("user_a_id = #{current_user.id} AND status = 'active' ")
   end
 
   def start_trade
@@ -37,6 +37,16 @@ class TradesController < ApplicationController
     @trade.save
     @offered_item.save
     @requested_item.save
+
+    #cancel all other trades with the same item id
+    @remaining_trades = Trade.where("item_id = #{@trade.requested_item.id} OR item_id = #{@trade.offered_item.id}")
+      @remaining_trades.each do |trade|
+        trade.status = 'nulled'
+        trade.save
+      end
+
+
+    
     redirect_to user_path(current_user), notice: "Trade was succesfully completed. A #{@offered_item.item_name} is now in your inventory."
   end
 
