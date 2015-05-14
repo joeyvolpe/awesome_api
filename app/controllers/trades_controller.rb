@@ -1,6 +1,5 @@
 class TradesController < ApplicationController
   def show
-
   end
 
   def index
