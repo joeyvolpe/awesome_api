@@ -6,4 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-users = User.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+users = Item.create([{ item_name: 'Hoola Hoop', item_description: 'Circular tube you can spin around your waist for entertainment and what not.', user_id }, { name: 'Freddie', last_name: 'Mac', email: 'freddie@example.com' }])
