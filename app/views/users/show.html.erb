@@ -107,7 +107,7 @@
 	<section>
 	
 			      
-		<% @user.items.each do |item| %>
+		<% @user.items.reverse.each do |item| %>
 			<div class="ui white segment">
 			  <div class="ui link items">
 			    <div class="item">
@@ -141,15 +141,47 @@
 			  <% if view_button(item) %>
 
 			  	
-			  	<%= form_for [@user, @trade], url: "#{@user.id}/items/#{item.id}/trades/start_trade" do |f| %>
-			  	    <div class="well well-sm centered">
+			  	<%= form_for [@user, @trade], url: "#{@user.id}/items/#{item.id}/trades/start_trade", html: {id: "trade_#{item.id}_form"}  do |f| %>
+
+
+
+			  	    <div class="ui center aligned compact segment">
 						<%= f.select :item_a_id, current_user.items.all.collect {|p| [ truncate(p.item_name, length: 30), p.id ] }, {prompt: 'My Items'}, :class => "item" %>
 
-					
+						<!-- <div class="ui button trademe">Trade This Item</div> -->
+						<!-- <div class="ui flowing popup">
+						    <div class="ui three column divided equal height center aligned grid">
+					      		<% current_user.items.each do |item| %>
+					      	    	
+					      	     	
+					      	     	<div class="column">
+								        <h4 class="ui header"><%=item.item_name%></h4>
+								        <p><%= item.item_description %></p> -->
+
+								         <!-- button code starts here -->
+								        <%#= f.label "item_a_id_#{item.id}", item.item_name , class: "ui button choose", html: {id: "trade_#{item.id}_form"} %>
+								        <%#= f.radio_button :item_a_id, item.id, style: 'display: ;', html: {id: "trade_#{item.id}_form"} %>
+								        
+								     
+								         <!-- button code ends here -->
+
+								        <%#= f.radio_button :item_a_id, item.id, style: 'display: ;' %>
+								        <%#= f.label "item_a_id_#{item.id}" , item.item_name , class: "ui button choose" %>
+
+
+								       
+								        <!-- end specific item -->
+						<!-- 	      </div>
+					      		<% end %>
+						      
+						    </div>
+						  </div> -->
+						  <i class="long arrow right icon"></i>
+
 
 			  			<%= f.hidden_field :user_a_id, :value => current_user.id %>
 			  			<%= f.hidden_field :user_id, :value => @user.id %>
-			  			<%= f.submit "Request Trade!", :class => "small ui primary button " %>
+			  			<%= f.submit "Request #{item.item_name}!", :class => "small ui primary button ", html: {id: "trade_#{item.id}_form"} %>
 			  		</div>
 
 			  	<% end %>
@@ -181,6 +213,9 @@
 		$('.ui.large.test.modal').modal('show');
 	})
 
+	$('.ui.button.trademe')
+	  .popup({hoverable: true, delay: 200})
+	;
 	// var button = document.querySelector('#show_modal')
 	// button.addEventListener('click', function () {$('.standard.test.modal').modal('show');}).modal('show');
 	
@@ -194,6 +229,14 @@
 	});
 
 	$('.ui.dropdown').dropdown();
+
+	$('.ui.button.choose').on('click', function(){
+		var newText = $(this).text();
+		$('.ui.button.trademe')
+			.text(newText)
+			.addClass('positive')
+	  		.popup('hide');
+	})
 
 
 </script>

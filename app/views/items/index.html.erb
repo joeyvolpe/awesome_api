@@ -1,25 +1,30 @@
 
 <div class="ui page grid">
   <div class="twelve wide column">
-    <div class="ui center aligned large feed">
+  
       <% @items.reverse.each do |item| %>
+      <div class="ui white segment">
+      <div class="ui center aligned large feed">
+        
         <div class="event">
           <div class="label">
-            <div class="ui tiny circular image">
+            <div class="ui tiny image">
               <%= image_tag item_owner(item).image %>
             </div>
           </div>
+          
           <div class="content">
             <div class="summary">
-                <%= link_to item_owner(item).name, user_path(item.user_id) %> added a <%= link_to truncate(item.item_name, length: 30), item_path(item) %>.
+                <%= link_to item_owner(item).name, user_path(item.user_id) %> added a <%= truncate(item.item_name, length: 30) %>.
               <div class="date">
                 <%= time_ago_in_words(item.created_at) %> ago.
               </div>
             </div>
             <br>
-            <div class="extra images">
-              <div class="ui huge image"><%= image_tag item.item_image.url %></div>
-            </div>  
+            <!-- <div class="extra images"> -->
+              <div class="ui large image"><%= image_tag item.item_image.url %></div>
+            <!-- </div>  --> 
+            <br>
             <br>
             <div class="extra text">
               <%= item.item_description %>
@@ -27,8 +32,9 @@
           </div>
         </div>
         <br>
+      </div>
+      </div>
       <% end %>
-    </div>
   </div>
 </div>
 
