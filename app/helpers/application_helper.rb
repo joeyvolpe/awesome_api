@@ -13,7 +13,7 @@ module ApplicationHelper
 
   def pending_trades
     if logged_in?
-      return current_user.trades.where(status: 'active').count
+        return current_user.trades.where(status: 'active').count
     end
   end
 
@@ -32,7 +32,7 @@ module ApplicationHelper
   end
 
   def offered_item(trade)
-     Item.find(trade.item_a_id)
+     Item.where(id: trade.item_a_id).first
   end
 
   def requested_item(trade)
