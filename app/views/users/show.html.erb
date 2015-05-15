@@ -9,17 +9,17 @@
 	  <div class="content">
 	    <a class="header"><%= @user.name %> <%= @user.last_name %></a>
 	    <div class="meta">
-	      <span class="date">Joined in 2014</span>
+	      <span class="date">Joined in 2015</span>
 	    </div>
 	    <div class="description">
-	      Stevie Feliciano is a library scientist living in New York City. She likes to spend her time reading, running, and writing.
+		  	"<%= @quote %>" - <%= @quote_reference %>
 	    </div>
 	  </div>
 	  <div class="extra content">
-	    <a>
-	      <i class="user icon"></i>
-	      22 Friends
-	    </a>
+	
+	      <i class="trophy icon"></i>
+	      <%= @user.items.count %> items
+	   
 	  </div> 
 	  <% if user_access? %>
 	  <div class="extra content">
