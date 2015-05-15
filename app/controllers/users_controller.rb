@@ -13,6 +13,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @item = Item.new
     @trade = Trade.new
+
+    #figaro heroku set -e production
+    auth = {headers:{
+              "X-Mashape-Key" => ENV['X-Mashape-Key'],
+              "Content-Type" => "application/x-www-form-urlencoded",
+              "Accept" => "application/json"
+    }}
+
+    # DO NOT PUSH TO GIT HUB UNTIL SECURED KEY
+    @quote_body = JSON.parse(HTTParty.get("https://andruxnet-random-famous-quotes.p.mashape.com/cat=movies",  auth).body)
+    @quote = @quote_body['quote']
+    @quote_reference = @quote_body['author']
   end
 
   def new
@@ -24,9 +36,9 @@ class UsersController < ApplicationController
 
     if @user.save
 
-       # Will auto log user in when they sign up for a new account
+      # Will auto log user in when they sign up for a new account
       session[:user_id] = @user.id.to_s
-       # End auto log in
+      # End auto log in
       flash[:welcome] = "Thanks for signing up, #{@user.name}!"
 
       redirect_to users_path
@@ -43,15 +55,15 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-		if @user.update_attributes(user_params)
-			redirect_to user_path(@user), notice: 'Your profile was successfully updated.'
-		else
-			render :edit
-		end
+    if @user.update_attributes(user_params)
+      redirect_to user_path(@user), notice: 'Your profile was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
     session[:user_id] = nil
     @user.destroy
     respond_to do |format|

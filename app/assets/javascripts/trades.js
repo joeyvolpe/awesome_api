@@ -21,6 +21,17 @@ $(document).ready(function(){
         $('#bottom').html("<h2>FAILED TO LOAD</h2>");
     });
 
+ json.done(function(data){
+   var i;
+   for(i = 0; i < 4; i += 1){
+     console.log(data[i]);
+     addItem($('#top'), data[i]);
+   }
+ });
+ json.fail(function(data){
+   $('#top').html("<h2>FAILED TO LOAD</h2>");
+ });
+
     function addItem(jqElem, data){
         console.log(jqElem);
         console.log(data);
@@ -28,8 +39,8 @@ $(document).ready(function(){
    var userImage = data.user_image;
 
 
-        var listItem = "<div class='four wide column'>"; 
-        listItem += "<img class='ui medium image' src=' " + itemImage + "'></div>";
+        var listItem = "<div class='two wide column'>"; 
+        listItem += "<img src=' " + itemImage + "'></div>";
 
         jqElem.append(listItem);
         console.log(listItem);
