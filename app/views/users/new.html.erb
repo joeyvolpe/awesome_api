@@ -1,4 +1,5 @@
 <div class="container-fluid">
+<!-- Start flash hash -->
 	<div class="error-messages">
 		<% if @user.errors.any?  %>
 			<div>
@@ -11,7 +12,23 @@
 			</div>
 		<% end %>
 	</div>
-	<section>
-		<%= render 'form' %>
-	</section>
+<!-- End flash hash -->
 </div>
+<br>
+<br>
+
+<div class="ui page grid">
+
+
+
+  	<div class="six wide centered column">
+	  	<div class="ui white segment" style="text-align: center">
+			<ul id="items-list"></ul>
+		</div>
+
+   	<h1 class= "ui white segment" style="text-align: center">SIGN UP <i class="arrow right icon"></i>TRADE</h1>
+ 	 </div>	
+</div>
+<%= render 'form' %>
+
+

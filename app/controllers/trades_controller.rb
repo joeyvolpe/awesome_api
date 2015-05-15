@@ -1,6 +1,5 @@
 class TradesController < ApplicationController
   def show
-
   end
 
   def index
@@ -13,14 +12,26 @@ class TradesController < ApplicationController
   end
 
   def start_trade
+
     @user = User.find(params[:trade][:user_id])
     @item = Item.find(params[:id])
-    @trade = @item.trades.new(trade_params)
-    if @trade.save
-      @user.save
-      redirect_to user_path(@user), notice: 'Trade was succesfully requested.'
+
+     # check for duplicate trades
+     @duplicate_trades = Trade.where("item_id = #{@item.id} AND item_a_id = #{params[:trade][:item_a_id]} AND status = 'active'")
+    if @duplicate_trades.first.nil?
+
+
+      @trade = @item.trades.new(trade_params)
+      if @trade.save
+        @user.save
+        redirect_to user_path(@user), notice: 'Trade was succesfully requested.'
+      else
+        redirect_to user_path(@user), notice: 'Error: Please select an item to trade'
+      end
+
+
     else
-      redirect_to user_path(@user), notice: 'Error: Please select an item to trade'
+      redirect_to user_path(@user), notice: 'That trade is already pending.'
     end
   end
 
@@ -29,6 +40,9 @@ class TradesController < ApplicationController
     @trade = Trade.find(params[:id])
     @offered_item = Item.find(@trade.offered_item.id)
     @requested_item = Item.find(@trade.requested_item.id)
+
+   
+
     
     # switch and save ids of traded items 
     @offered_item.user_id = @trade.requested_item.user_id
@@ -40,7 +54,7 @@ class TradesController < ApplicationController
     @requested_item.save
 
     #cancel all other trades with the same item id
-    @remaining_trades = Trade.where("item_id = #{@trade.requested_item.id} OR item_id = #{@trade.offered_item.id}")
+    @remaining_trades = Trade.where("item_id = #{@trade.requested_item.id} OR item_a_id = #{@trade.offered_item.id}").where("status = 'active'")
       @remaining_trades.each do |trade|
         trade.status = 'nulled'
         trade.save
