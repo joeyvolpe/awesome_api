@@ -1,3 +1,5 @@
+require 'httparty'
+
 class UsersController < ApplicationController
   before_action :require_login?, except: [:index, :new, :create, :show]
   before_action :authorized?, only: [:edit, :update]
