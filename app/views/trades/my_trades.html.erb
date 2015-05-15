@@ -5,6 +5,7 @@
     	<p>No trades pending</p>
     <% else %>
     <% @trades.each do |trade| %>
+    <% unless offered_item(trade).nil? %>
 	    <div class="ten wide column centered aligned ui white segment">
 	    	<p>Trade Requested By: <%= trade.requester.name %></p>
 	    	<p>Item offered: <%= trade.offered_item.item_name %></p>
@@ -23,6 +24,7 @@
 		    	</div>
 		    </div>
 	    </div>
+    <% end %>
     <% end %>
 <% end %>
 

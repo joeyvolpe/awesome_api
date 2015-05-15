@@ -42,6 +42,8 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
+    @trades = Trade.where("item_id = #{@item.id} OR item_a_id = #{@item.id}")
+    @trades.destroy_all
     @item.destroy
     redirect_to user_path(@item.user_id), notice: 'Item was successfully deleted.' 
   end
