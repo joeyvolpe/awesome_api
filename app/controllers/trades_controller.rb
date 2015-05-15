@@ -3,7 +3,7 @@ class TradesController < ApplicationController
   end
 
   def index
-    @trades = Trade.all#.where(status: 'completed')
+    @trades = Trade.all.where(status: 'completed')
   end
 
   def my_trades
