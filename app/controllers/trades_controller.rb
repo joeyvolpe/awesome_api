@@ -19,10 +19,12 @@ class TradesController < ApplicationController
      # check for duplicate trades
      @duplicate_trades = Trade.where("item_id = #{@item.id} AND item_a_id = #{params[:trade][:item_a_id]} AND status = 'active'")
 
+
      @duplicate_trades_other_way = Trade.where("item_id = #{params[:trade][:item_a_id]} AND item_a_id = #{@item.id} AND status = 'active'")
      #fdsfds
 
     if @duplicate_trades.first.nil? && @duplicate_trades_other_way.first.nil?
+
 
 
 
