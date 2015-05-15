@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- root 'trades#index'
+ root 'items#index'
  get 'signup/' => 'users#new', as: :new_user
 
  get 'login' => 'sessions#new'
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 namespace :api do
 	resources :items, only: [:index, :show]
 	resources :users, only: [:index, :show]
-	resources :trades, only: [:index, :show]
+	resources :trades, only: [:index]
 end
 
 
