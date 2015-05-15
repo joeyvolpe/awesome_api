@@ -13,7 +13,7 @@
 							   <div class="column ui">
 							   	<%= link_to (image_tag trade_requester(trade).image), trade_requester(trade), :class => "ui avatar image" %>
 							   <%#= image_tag trade_requester(trade).image, :class => "ui small fluid image" %>
-							   <%= link_to (trade_requester(trade).name), trade_requester(trade) %> <%= link_to (trade_requester(trade).last_name), trade_requester(trade) %>
+							   <%= link_to ("#{trade_requester(trade).name} #{trade_requester(trade).last_name}"), trade_requester(trade) %> 
 
 
 							   </div>
@@ -35,7 +35,7 @@
 						    	<div class="column ui ">
 						    		WITH
 						    	</div>
-						    	<div class="column ui "><%= image_tag trade_requestee(trade).image, :class => "ui tiny fluid image" %><%= trade_requestee(trade).name %> <%= trade_requestee(trade).last_name %>
+						    	<div class="column ui "><%= link_to (image_tag trade_requestee(trade).image, :class => "ui tiny fluid image"), trade_requestee(trade) %><%= link_to ("#{trade_requestee(trade).name} #{trade_requestee(trade).last_name}"), trade_requestee(trade) %> 
 						    	</div>
 						  	</div>
 
