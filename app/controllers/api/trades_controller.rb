@@ -3,9 +3,5 @@ module API
 		def index
 			render json: @trades = Trade.all
 		end
-
-		def show
-
-		end
 	end
 end

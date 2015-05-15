@@ -1,6 +1,6 @@
 class Trade < ActiveRecord::Base
-	belongs_to :user
-	belongs_to :item
+	belongs_to :users
+	belongs_to :items
 	validates :item_a_id,  presence: true
 
 	def requester

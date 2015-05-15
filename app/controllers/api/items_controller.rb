@@ -8,15 +8,6 @@ module API
 			render json: Item.find(params[:id])
 		end
 
-		# def create
-		# 	item = Item.new(item_params)
-
-		# 	if item.save
-		# 		render json: item, status: 201, location: [:api, bowtie]
-		# 	else
-		# 		render json: bowtie.errors, status: 422
-		# 	end
-		# end
 
 
 		private
