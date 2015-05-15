@@ -1,10 +1,7 @@
 class ItemSerializer < ActiveModel::Serializer
-  attributes :item_name, :item_description, :item_image, :user_fullname, :user_image 
+ attributes :item_name,:item_description, :item_image, :user_fullname, :user_image 
 
-
-
-
-	def user
+def user
 		user_id = object.user_id
 		User.find(user_id)
 	end
@@ -16,5 +13,4 @@ class ItemSerializer < ActiveModel::Serializer
 	def user_image
 		user.image
 	end
-  
 end
