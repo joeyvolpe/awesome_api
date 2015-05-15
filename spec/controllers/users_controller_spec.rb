@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe UsersController, :type => :controller do
 	before(:each) do
-		@user1 = User.create(name: "Austin Kim", email: "austin@example.com", password: "password")
-		@user2 = User.create(name: "Joey Volpe", email: "joey@example.com", password: "password")
+		@user1 = User.create(name: "Austin", last_name: "Kim", email: "austin@example.com", password: "password")
+		@user2 = User.create(name: "Joey", last_name: "Volpe", email: "joey@example.com", password: "password")
 	end
 
 	describe "GET #index" do
