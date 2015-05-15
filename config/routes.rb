@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- root 'trades#index'
+ root 'items#index'
  get 'signup/' => 'users#new', as: :new_user
 
  get 'login' => 'sessions#new'
