@@ -55,7 +55,7 @@ class TradesController < ApplicationController
     @requested_item.save
 
     #cancel all other trades with the same item id
-    @remaining_trades = Trade.where("item_id = #{@trade.requested_item.id} OR item_a_id = #{@trade.offered_item.id}").where("status = 'active'")
+    @remaining_trades = 
       @remaining_trades.each do |trade|
         trade.status = 'nulled'
         trade.save
