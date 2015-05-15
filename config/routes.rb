@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 namespace :api do
 	resources :items, only: [:index, :show]
 	resources :users, only: [:index, :show]
-	resources :trades, only: [:index, :show]
+	resources :trades, only: [:index]
 end
 
 
