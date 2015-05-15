@@ -1,5 +1,5 @@
 class ItemSerializer < ActiveModel::Serializer
-  attributes :item_name, :item_description, :item_image, :user_name, :user_image 
+  attributes :item_name, :item_description, :item_image, :user_fullname, :user_image 
 
 
 
@@ -10,7 +10,7 @@ class ItemSerializer < ActiveModel::Serializer
 	end
 
 	def user_fullname
-		user.name + user.last_name
+		"#{user.name} #{user.last_name}"
 	end	
 
 	def user_image
