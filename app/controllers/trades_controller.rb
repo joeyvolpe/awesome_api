@@ -18,10 +18,13 @@ class TradesController < ApplicationController
 
      # check for duplicate trades
      @duplicate_trades = Trade.where("item_id = #{@item.id} AND item_a_id = #{params[:trade][:item_a_id]} AND status = 'active'")
+
      @duplicate_trades_other_way = Trade.where("item_id = #{params[:trade][:item_a_id]} AND item_a_id = #{@item.id} AND status = 'active'")
      #fdsfds
 
     if @duplicate_trades.first.nil? && @duplicate_trades_other_way.first.nil?
+
+
 
 
       @trade = @item.trades.new(trade_params)
@@ -34,11 +37,13 @@ class TradesController < ApplicationController
 
 
     else
+
       if @duplicate_trades.first.nil?
       redirect_to user_path(@user), notice: 'You requested that item already.'
       elsif @duplicate_trades_other_way.first.nil?
          redirect_to user_path(@user), notice: "#{@user.name} has already requested that item from you. Check your pending trades."
       end   
+
     end
   end
 
