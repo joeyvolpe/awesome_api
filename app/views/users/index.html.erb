@@ -15,21 +15,15 @@
 <div class="ui three cards">
 	<% @users.each do |user| %>
 
-	<div class="card" style="height:300px; width: 300px">
+	<div class="ui fluid card">
 		<%= link_to user_path(user) do %>
 		<div class="item">
-		
-	     <div class="ui medium image"> <%= image_tag user.image.url %></div>
-
+	     <div class="image"> <%= image_tag user.image.url %></div>
 	     <!-- begin content -->
-		    <div class="content header">
+		   <div class="content header">
 		      	<p><%= user.name %><p>
-			      <div class="description">
-			        <p>Trade with me!<p>
-			      </div>
 	    	</div>
 	    	<!-- end content -->
-
 		</div>
     </div>
       <% end %>
