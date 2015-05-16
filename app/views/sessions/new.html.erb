@@ -1,9 +1,8 @@
 <br>
 <br>
 
-<div id="top" class="ui page grid">
-</div>
 
+<div id="top" class="ui page grid"></div>
 <div class="ui page grid">
 	<div class="six wide centered column">
    <h1 class= "ui white segment" style="text-align: center">LOG IN <i class="arrow right icon"></i>TRADE</h1>
@@ -11,23 +10,23 @@
 </div>
 
 <div class="ui page grid">
-  <div class="six wide centered column">
-	  <div class="ui form segment">
-			<%= form_for :login do |f|  %>
-				<div class="field">
-					<%= f.label :email %>
-					<%= f.text_field :email %>
-				</div>
-				<div class="field">
-					<%= f.label :password  %>
-					<%= f.password_field :password %>
-				</div>
-				<div class="button">
-					<%= f.submit "Login" %>
-				</div>
-			<% end %>
-		</div>
-	</div>
+ <div class="six wide centered column">
+      <div class="ui form segment">
+            <%= form_for :login do |f|  %>
+                <div class="field">
+                    <%= f.label :email %>
+                    <%= f.text_field :email %>
+                </div>
+                <div class="field">
+                    <%= f.label :password  %>
+                    <%= f.password_field :password %>
+                </div>
+                <div class="button">
+                    <%= f.submit "Login" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
 </div>
 
 <div id="bottom" class="ui page grid">
