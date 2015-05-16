@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
+ruby '2.2.1'
 
 gem 'carrierwave'
 gem 'fog'
-gem 'rmagick'
+gem 'rmagick', require: false
 gem 'figaro'
 gem 'active_model_serializers'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass', branch: 'v1.0beta'
@@ -41,6 +42,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+  gem 'httparty'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,7 +53,6 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'httparty'
 
   gem 'better_errors'
 	gem 'binding_of_caller'

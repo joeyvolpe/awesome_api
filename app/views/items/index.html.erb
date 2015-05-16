@@ -9,7 +9,7 @@
         <div class="event">
           <div class="label">
             <div class="ui tiny image">
-              <%= image_tag item_owner(item).image %>
+              <%= link_to (image_tag item_owner(item).image), user_path(item.user_id) %>
             </div>
           </div>
           
@@ -22,7 +22,7 @@
             </div>
             <br>
             <!-- <div class="extra images"> -->
-              <div class="ui large image"><%= image_tag item.item_image.url %></div>
+              <div class="ui large image"><%= link_to (image_tag item.item_image.url), user_path(item.user_id) %></div>
             <!-- </div>  --> 
             <br>
             <br>

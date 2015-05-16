@@ -1,4 +1,5 @@
 class ItemSerializer < ActiveModel::Serializer
+
   attributes :item_name, :item_description, :item_image, :user_fullname, :user_image 
 
 
@@ -22,3 +23,4 @@ class ItemSerializer < ActiveModel::Serializer
 
   
 end
+
