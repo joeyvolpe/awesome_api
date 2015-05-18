@@ -24,9 +24,9 @@ class UsersController < ApplicationController
     }}
 
     # DO NOT PUSH TO GIT HUB UNTIL SECURED KEY
-    @quote_body = JSON.parse(HTTParty.get("https://andruxnet-random-famous-quotes.p.mashape.com/cat=movies",  auth).body)
-    @quote = @quote_body['quote']
-    @quote_reference = @quote_body['author']
+    #@quote_body = JSON.parse(HTTParty.get("https://andruxnet-random-famous-quotes.p.mashape.com/cat=movies",  auth).body)
+    #@quote = @quote_body['quote']
+    #@quote_reference = @quote_body['author']
   end
 
   def new

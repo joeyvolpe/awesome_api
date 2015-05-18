@@ -1,40 +1,40 @@
 
 <div class="ui page grid">
   <div class="twelve wide column">
-  
-      <% @items.reverse.each do |item| %>
+    <% @items.reverse.each do |item| %>
       <div class="ui white segment">
-      <div class="ui center aligned large feed">
-        
-        <div class="event">
-          <div class="label">
-            <div class="ui tiny image">
-              <%= link_to (image_tag item_owner(item).image), user_path(item.user_id) %>
-            </div>
-          </div>
-          
-          <div class="content">
-            <div class="summary">
-                <%= link_to item_owner(item).name, user_path(item.user_id) %> added a <%= truncate(item.item_name, length: 30) %>.
-              <div class="date">
-                <%= time_ago_in_words(item.created_at) %> ago.
+        <div class="ui center aligned large feed">
+
+          <div class="event">
+            <div class="label">
+              <div class="ui tiny image">
+                <%= link_to (image_tag item_owner(item).image), user_path(item.user_id) %>
               </div>
             </div>
-            <br>
-            <!-- <div class="extra images"> -->
-              <div class="ui large image"><%= link_to (image_tag item.item_image.url), user_path(item.user_id) %></div>
-            <!-- </div>  --> 
-            <br>
-            <br>
-            <div class="extra text">
-              <%= item.item_description %>
+            
+            <div class="content">
+              <div class="summary">
+                  <%= link_to item_owner(item).name, user_path(item.user_id) %> added a <%= truncate(item.item_name, length: 30) %>.
+                <div class="date">
+                  <%= time_ago_in_words(item.created_at) %> ago.
+                </div>
+              </div>
+              <br>
+              <!-- <div class="extra images"> -->
+                <div class="ui large image"><%= link_to (image_tag item.item_image.url), user_path(item.user_id) %></div>
+              <!-- </div>  --> 
+              <br>
+              <br>
+              <div class="extra text">
+                <%= item.item_description %>
+              </div>
             </div>
+
           </div>
+          <br>
         </div>
-        <br>
       </div>
-      </div>
-      <% end %>
+    <% end %>
   </div>
 </div>
 
